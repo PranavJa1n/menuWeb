@@ -465,6 +465,37 @@ def docker_management():
     return render_template("docker.html")
 
 
+# @app.route('/ml', methods=['GET', 'POST'])
+# def index():
+#     if request.method == 'POST':
+#         file = request.files['file']
+#         target_column = request.form.get('target')
+#         if file and file.filename.endswith('.csv'):
+#             # Setup folder to save uploaded files
+#             upload_folder = 'uploads'
+#             if not os.path.exists(upload_folder):
+#                 os.makedirs(upload_folder)
+#             file_path = os.path.join(upload_folder, file.filename)
+#             file.save(file_path)
+#             df = pd.read_csv(file_path)
+#             if target_column not in df.columns:
+#                 return "Error: Target column not found in the dataset", 400
+#             X = df.drop(target_column, axis=1)
+#             y = df[target_column]
+#             # Check if all columns are numeric
+#             if not all(pd.api.types.is_numeric_dtype(X[col]) for col in X.columns):
+#                 X = pd.get_dummies(X)
+#             X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+#             scaler = StandardScaler()
+#             X_train = scaler.fit_transform(X_train)
+#             X_test = scaler.transform(X_test)
+#             model = RandomForestClassifier(n_estimators=100, random_state=42)
+#             model.fit(X_train, y_train)
+#             y_pred = model.predict(X_test)
+#             accuracy = accuracy_score(y_test, y_pred)
+#             return f'Accuracy of the model: {accuracy:.2f}'
+#     return 'Please upload a CSV file and specify the target column.'
+
 @app.route('/ml', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
@@ -479,7 +510,7 @@ def index():
             file.save(file_path)
             df = pd.read_csv(file_path)
             if target_column not in df.columns:
-                return "Error: Target column not found in the dataset", 400
+                return render_template('upload.html', error="Error: Target column not found in the dataset")
             X = df.drop(target_column, axis=1)
             y = df[target_column]
             # Check if all columns are numeric
@@ -492,30 +523,52 @@ def index():
             model = RandomForestClassifier(n_estimators=100, random_state=42)
             model.fit(X_train, y_train)
             y_pred = model.predict(X_test)
-            accuracy = accuracy_score(y_test, y_pred)
-            return f'Accuracy of the model: {accuracy:.2f}'
-    return 'Please upload a CSV file and specify the target column.'
+            accuracy = accuracy_score(y_test, y_pred) * 100
+            return render_template('ml.html', accuracy=f'{accuracy:.2f}')
+    return render_template('ml.html')
 
-@app.route('/create_instance', methods=['POST'])
+# @app.route('/create_instance', methods=['POST'])
+# def runec2():
+    
+#     image_id = request.form.get('image_id')
+#     instance_type = request.form.get('instance_type')
+#     num_instances = int(request.form.get('num_instances'))
+#     region = request.form.get('region')
+    
+#     session = boto3.Session(region_name=region)
+#     ec2 = session.resource('ec2')
+#     def ciec2():
+#         instances = ec2.create_instances(
+#         ImageId=image_id,  
+#         InstanceType=instance_type,
+#         MinCount=1,
+#         MaxCount=1
+#         )
+#     for i in range(num_instances):
+#         ciec2()
+#     return 'Done'
+
+@app.route('/create_instance', methods=['GET', 'POST'])
 def runec2():
-    
-    image_id = request.form.get('image_id')
-    instance_type = request.form.get('instance_type')
-    num_instances = int(request.form.get('num_instances'))
-    region = request.form.get('region')
-    
-    session = boto3.Session(region_name=region)
-    ec2 = session.resource('ec2')
-    def ciec2():
-        instances = ec2.create_instances(
-        ImageId=image_id,  
-        InstanceType=instance_type,
-        MinCount=1,
-        MaxCount=1
-        )
-    for i in range(num_instances):
-        ciec2()
-    return 'Done'
+    if request.method == 'POST':
+        image_id = request.form.get('image_id')
+        instance_type = request.form.get('instance_type')
+        num_instances = int(request.form.get('num_instances'))
+        region = request.form.get('region')
+        session = boto3.Session(region_name=region)
+        ec2 = session.resource('ec2')
+        instances = []
+        for _ in range(num_instances):
+            instance = ec2.create_instances(
+                ImageId=image_id,  
+                InstanceType=instance_type,
+                MinCount=1,
+                MaxCount=1
+            )
+            instances.append(instance)
+        message = f"{num_instances} new EC2 instance(s) launched successfully!"
+        return render_template('ec2.html', message=message)
+    return render_template('ec2.html')
 
 @app.route('/terminal')
 def terminal():

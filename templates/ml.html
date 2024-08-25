@@ -64,12 +64,16 @@
         input[type="submit"]:hover {
             background-color: #F39C12; /* Slightly darker highlight color on hover */
         }
+        .accuracy {
+            margin-top: 20px;
+            color: #F1C40F;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Upload Your CSV Dataset</h1>
-        <form action="http://127.0.0.1:5000/ml" method="post" enctype="multipart/form-data">
+        <form action="/ml" method="post" enctype="multipart/form-data">
             <label for="file">CSV File:</label>
             <input type="file" id="file" name="file" accept=".csv" required><br>
             
@@ -78,6 +82,11 @@
             
             <input type="submit" value="Upload and Process">
         </form>
+        {% if accuracy %}
+        <div class="accuracy">
+            Accuracy of the model: {{ accuracy }}%
+        </div>
+        {% endif %}
     </div>
 </body>
 </html>
