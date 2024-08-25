@@ -53,11 +53,17 @@
         button:hover {
             background-color: #d4ac0d;
         }
+        .message {
+            color:#2ECC71;
+            text-align: center;
+            font-size: 18px;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
     <h1>Send Email</h1>
-    <form action="http://127.0.0.1:5000/email" method="POST">
+    <form action="{{ url_for('send_email') }}" method="POST">
         <label for="sender_email">Sender Email:</label><br>
         <input type="email" id="sender_email" name="sender_email" required><br><br>
         
@@ -75,5 +81,11 @@
         
         <button type="submit">Send Email</button>
     </form>
+    
+    {% if message %}
+    <div class="message">
+        {{ message }}
+    </div>
+    {% endif %}
 </body>
 </html>

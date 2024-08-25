@@ -57,25 +57,50 @@ def send_emails():
             success_message = "Emails sent successfully!"
     return render_template('bulk_email.html', success_message=success_message, error_message=error_message)
 
-@app.route("/email", methods=["POST"])
+# @app.route("/email", methods=["POST"])
+# def send_email():
+#     sender_email = request.form.get('sender_email')
+#     sender_password = request.form.get('sender_password')
+#     recipient_email = request.form.get('recipient_email')
+#     subject = request.form.get('subject')
+#     body = request.form.get('body')
+#     msg = EmailMessage()
+#     msg['From'] = sender_email
+#     msg['To'] = recipient_email
+#     msg['Subject'] = subject
+#     msg.set_content(body)
+#     server = smtplib.SMTP('smtp.gmail.com', 587)
+#     server.starttls()
+#     server.login(sender_email, sender_password)
+#     server.send_message(msg)
+#     server.quit()
+#     return "Email sent successfully"
+
+@app.route("/email", methods=["GET", "POST"])
 def send_email():
-    sender_email = request.form.get('sender_email')
-    sender_password = request.form.get('sender_password')
-    recipient_email = request.form.get('recipient_email')
-    subject = request.form.get('subject')
-    body = request.form.get('body')
-    msg = EmailMessage()
-    msg['From'] = sender_email
-    msg['To'] = recipient_email
-    msg['Subject'] = subject
-    msg.set_content(body)
-    server = smtplib.SMTP('smtp.gmail.com', 587)
-    server.starttls()
-    server.login(sender_email, sender_password)
-    server.send_message(msg)
-    server.quit()
-    return "Email sent successfully"
-        
+    if request.method == "POST":
+        sender_email = request.form.get('sender_email')
+        sender_password = request.form.get('sender_password')
+        recipient_email = request.form.get('recipient_email')
+        subject = request.form.get('subject')
+        body = request.form.get('body')
+        try:
+            msg = EmailMessage()
+            msg['From'] = sender_email
+            msg['To'] = recipient_email
+            msg['Subject'] = subject
+            msg.set_content(body)
+            server = smtplib.SMTP('smtp.gmail.com', 587)
+            server.starttls()
+            server.login(sender_email, sender_password)
+            server.send_message(msg)
+            server.quit()
+            message = "Email sent successfully!"
+        except Exception as e:
+            message = f"Failed to send email. Error: {str(e)}"
+        return render_template('email.html', message=message)
+    return render_template('email.html')
+
 @app.route('/geo', methods=['GET', 'POST'])
 def geo():
     latitude = None
@@ -279,17 +304,98 @@ def gen_frames():
 def video_feed():
     return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
+# @app.route("/docker_image_pull", methods=["POST"])
+# def docker_img_pull():
+#     image = request.form.get('image')
+#     cmd = f"docker pull {image}"
+#     output = subprocess.getstatusoutput(cmd)
+#     if output[0] == 0:
+#         return jsonify({"message": "Image downloaded successfully.", "status": "success"})
+#     else:
+#         return jsonify({"message": "Image download failed.", "status": "fail"})
+
+
+# @app.route("/launch_docker", methods=["POST"])
+# def docker_launch():
+#     container_name = request.form.get('container_name')
+#     image = request.form.get('image')
+#     cmd = f"docker run -dit --name {container_name} {image}"
+#     output = subprocess.getstatusoutput(cmd)
+#     if output[0] == 0:
+#         return jsonify({"message": "Docker container launched successfully.", "status": "success", "container_id": output[1]})
+#     else:
+#         return jsonify({"message": "Failed to launch Docker container.", "status": "fail"})
+
+
+# @app.route("/docker_stop", methods=["POST"])
+# def docker_stop():
+#      container_name = request.form.get('container_name')
+#      cmd = f"docker stop {container_name}"
+#      output = subprocess.getstatusoutput(cmd)
+#      if output[0] == 0:
+#         return jsonify({"message": "Docker container stopped successfully.", "status": "success"})
+#      else:
+#         return jsonify({"message": "Failed to stop Docker container.", "status": "fail"})
+
+# @app.route("/docker_start", methods=["POST"])
+# def docker_start():
+#     container_name = request.form.get('container_name')
+#     cmd = f"docker start {container_name}"
+#     output = subprocess.getstatusoutput(cmd)
+#     if output[0] == 0:
+#         return jsonify({"message": "Docker container started successfully.", "status": "success"})
+#     else:
+#         return jsonify({"message": "Failed to start Docker container.", "status": "fail"})
+
+# @app.route("/docker_status", methods=["POST"])
+# def docker_status():
+#     container_name = request.form.get('container_name')
+#     cmd = f"docker ps -a --filter name={container_name} --format '{{{{.ID}}}} {{{{.Names}}}} {{{{.Status}}}}'"
+#     output = subprocess.getstatusoutput(cmd)
+#     if output[0] == 0:
+#         return jsonify({"message": output[1], "status": "success"})
+#     else:
+#         return jsonify({"message": "Failed to get Docker container status.", "status": "fail"})
+
+# @app.route("/docker_remove", methods=["POST"])
+# def docker_remove():
+#     container_name = request.form.get('container_name')
+#     cmd = f"docker rm {container_name}"
+#     output = subprocess.getstatusoutput(cmd)
+#     if output[0] == 0:
+#         return jsonify({"message": "Docker container removed successfully.", "status": "success"})
+#     else:
+#         return jsonify({"message": "Failed to remove Docker container.", "status": "fail"})
+
+# @app.route("/docker_logs", methods=["POST"])
+# def docker_logs():
+#     container_name = request.form.get('container_name')
+#     cmd = f"docker logs {container_name}"
+#     output = subprocess.getstatusoutput(cmd)
+#     if output[0] == 0:
+#         return jsonify({"message": output[1], "status": "success"})
+#     else:
+#         return jsonify({"message": "Failed to get Docker container logs.", "status": "fail"})
+
+# @app.route("/docker_image_remove", methods=["POST"])
+# def docker_img_remove():
+#     image = request.form.get('image')
+#     cmd = f"docker rmi -f {image}"
+#     output = subprocess.getstatusoutput(cmd)
+#     if output[0] == 0:
+#         return jsonify({"message": "Docker image removed successfully.", "status": "success"})
+#     else:
+#             return jsonify({"message": "Failed to remove Docker image.", "status": "fail"})
+
 @app.route("/docker_image_pull", methods=["POST"])
 def docker_img_pull():
     image = request.form.get('image')
     cmd = f"docker pull {image}"
     output = subprocess.getstatusoutput(cmd)
     if output[0] == 0:
-        return jsonify({"message": "Image downloaded successfully.", "status": "success"})
+        return render_template("docker_management.html", pull_message="Image downloaded successfully.")
     else:
-        return jsonify({"message": "Image download failed.", "status": "fail"})
-
-
+        return render_template("docker_management.html", pull_message="Image download failed.")
 @app.route("/launch_docker", methods=["POST"])
 def docker_launch():
     container_name = request.form.get('container_name')
@@ -297,70 +403,67 @@ def docker_launch():
     cmd = f"docker run -dit --name {container_name} {image}"
     output = subprocess.getstatusoutput(cmd)
     if output[0] == 0:
-        return jsonify({"message": "Docker container launched successfully.", "status": "success", "container_id": output[1]})
+        return render_template("docker_management.html", launch_message="Docker container launched successfully.")
     else:
-        return jsonify({"message": "Failed to launch Docker container.", "status": "fail"})
-
-
+        return render_template("docker_management.html", launch_message="Failed to launch Docker container.")
 @app.route("/docker_stop", methods=["POST"])
 def docker_stop():
-     container_name = request.form.get('container_name')
-     cmd = f"docker stop {container_name}"
-     output = subprocess.getstatusoutput(cmd)
-     if output[0] == 0:
-        return jsonify({"message": "Docker container stopped successfully.", "status": "success"})
-     else:
-        return jsonify({"message": "Failed to stop Docker container.", "status": "fail"})
-
+    container_name = request.form.get('container_name')
+    cmd = f"docker stop {container_name}"
+    output = subprocess.getstatusoutput(cmd)
+    if output[0] == 0:
+        return render_template("docker_management.html", stop_message="Docker container stopped successfully.")
+    else:
+        return render_template("docker_management.html", stop_message="Failed to stop Docker container.")
 @app.route("/docker_start", methods=["POST"])
 def docker_start():
     container_name = request.form.get('container_name')
     cmd = f"docker start {container_name}"
     output = subprocess.getstatusoutput(cmd)
     if output[0] == 0:
-        return jsonify({"message": "Docker container started successfully.", "status": "success"})
+        return render_template("docker_management.html", start_message="Docker container started successfully.")
     else:
-        return jsonify({"message": "Failed to start Docker container.", "status": "fail"})
-
+        return render_template("docker_management.html", start_message="Failed to start Docker container.")
 @app.route("/docker_status", methods=["POST"])
 def docker_status():
     container_name = request.form.get('container_name')
     cmd = f"docker ps -a --filter name={container_name} --format '{{{{.ID}}}} {{{{.Names}}}} {{{{.Status}}}}'"
     output = subprocess.getstatusoutput(cmd)
     if output[0] == 0:
-        return jsonify({"message": output[1], "status": "success"})
+        return render_template("docker_management.html", status_message=output[1])
     else:
-        return jsonify({"message": "Failed to get Docker container status.", "status": "fail"})
-
+        return render_template("docker_management.html", status_message="Failed to get Docker container status.")
 @app.route("/docker_remove", methods=["POST"])
 def docker_remove():
     container_name = request.form.get('container_name')
     cmd = f"docker rm {container_name}"
     output = subprocess.getstatusoutput(cmd)
     if output[0] == 0:
-        return jsonify({"message": "Docker container removed successfully.", "status": "success"})
+        return render_template("docker_management.html", remove_message="Docker container removed successfully.")
     else:
-        return jsonify({"message": "Failed to remove Docker container.", "status": "fail"})
-
+        return render_template("docker_management.html", remove_message="Failed to remove Docker container.")
 @app.route("/docker_logs", methods=["POST"])
 def docker_logs():
     container_name = request.form.get('container_name')
     cmd = f"docker logs {container_name}"
     output = subprocess.getstatusoutput(cmd)
     if output[0] == 0:
-        return jsonify({"message": output[1], "status": "success"})
+        return render_template("docker_management.html", logs_message=output[1])
     else:
-        return jsonify({"message": "Failed to get Docker container logs.", "status": "fail"})
-
+        return render_template("docker_management.html", logs_message="Failed to get Docker container logs.")
 @app.route("/docker_image_remove", methods=["POST"])
 def docker_img_remove():
     image = request.form.get('image')
     cmd = f"docker rmi -f {image}"
     output = subprocess.getstatusoutput(cmd)
     if output[0] == 0:
-        return jsonify({"message": "Docker image removed successfully.", "status": "success"})
+        return render_template("docker_management.html", img_remove_message="Docker image removed successfully.")
     else:
-            return jsonify({"message": "Failed to remove Docker image.", "status": "fail"})
+        return render_template("docker_management.html", img_remove_message="Failed to remove Docker image.")
+@app.route("/docker")
+def docker_management():
+    return render_template("docker_management.html")
+
 
 @app.route('/ml', methods=['GET', 'POST'])
 def index():
