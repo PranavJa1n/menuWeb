@@ -22,6 +22,8 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
 import boto3
+import os
+import signal
 
 app = Flask(__name__)
 
@@ -149,6 +151,34 @@ def play_audio(filename):
         </html>
     """)
 
+# def send_email(sender_email, sender_password, recipient_email, message):
+#     try:
+#         s = smtplib.SMTP("smtp.gmail.com", 587)
+#         s.starttls()
+#         s.login(sender_email, sender_password)
+#         s.sendmail(sender_email, recipient_email, message)
+#         s.quit()
+#         return "Email sent successfully."
+#     except Exception as e:
+#         return f"Failed to send email: {str(e)}"
+# def schedule_email(timeinput, sender_email, sender_password, recipient_email, message):
+#     schedule.every().day.at(timeinput).do(lambda: send_email(sender_email, sender_password, recipient_email, message))
+#     while True:
+#         schedule.run_pending()
+#         time.sleep(1)
+# @app.route("/schedule_email", methods=["GET"])
+# def schedule_email_endpoint():
+#     sender_email = request.args.get("sender_email")
+#     sender_password = request.args.get("sender_password")
+#     recipient_email = request.args.get("recipient_email")
+#     message = request.args.get("message")
+#     timeinput = request.args.get("timeinput")
+#     if not all([sender_email, sender_password, recipient_email, message, timeinput]):
+#         return "Missing one or more required fields."
+#     thread = Thread(target=schedule_email, args=(timeinput, sender_email, sender_password, recipient_email, message))
+#     thread.start()
+#     return f"Email scheduled to be sent to {recipient_email} at {timeinput}."
+
 def send_email(sender_email, sender_password, recipient_email, message):
     try:
         s = smtplib.SMTP("smtp.gmail.com", 587)
@@ -164,18 +194,20 @@ def schedule_email(timeinput, sender_email, sender_password, recipient_email, me
     while True:
         schedule.run_pending()
         time.sleep(1)
-@app.route("/schedule_email", methods=["GET"])
+@app.route("/schedule_email", methods=["GET", "POST"])
 def schedule_email_endpoint():
-    sender_email = request.args.get("sender_email")
-    sender_password = request.args.get("sender_password")
-    recipient_email = request.args.get("recipient_email")
-    message = request.args.get("message")
-    timeinput = request.args.get("timeinput")
-    if not all([sender_email, sender_password, recipient_email, message, timeinput]):
-        return "Missing one or more required fields."
-    thread = Thread(target=schedule_email, args=(timeinput, sender_email, sender_password, recipient_email, message))
-    thread.start()
-    return f"Email scheduled to be sent to {recipient_email} at {timeinput}."
+    if request.method == "POST":
+        sender_email = request.form.get("sender_email")
+        sender_password = request.form.get("sender_password")
+        recipient_email = request.form.get("recipient_email")
+        message = request.form.get("message")
+        timeinput = request.form.get("timeinput")
+        if not all([sender_email, sender_password, recipient_email, message, timeinput]):
+            return render_template("schedule_email.html", error="Missing one or more required fields.")
+        thread = Thread(target=schedule_email, args=(timeinput, sender_email, sender_password, recipient_email, message))
+        thread.start()
+        return render_template("scheduleEmail.html", success=f"Email scheduled to be sent to {recipient_email} at {timeinput}.")
+    return render_template("scheduleEmail.html")
 
 @app.route("/sms", methods=["GET", "POST"])
 def sms_():
@@ -391,21 +423,7 @@ def command():
     output = subprocess.getoutput("sudo " + command)
     return output
     
-#     if command.lower() == "sl":
-#         return ""
-#     response = process_command(command)
-#     return response
-# def process_command(command):
-#     # Basic command processing logic
-#     if command.lower() == "hello":
-#         return "Hello! How can I assist you today?"
-#     elif command.lower() == "date":
-#         from datetime import datetime
-#         return f"Current date and time: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}"
-#     elif command.lower() == "exit":
-#         return "Exiting terminal... Goodbye!"
-#     else:
-#         return f"Command not recognized: {command}"
+
 
 # @app.route('/s3')
 # def upload_form():
@@ -465,6 +483,15 @@ def calculate_bmi():
             category = "Invalid input. Please enter valid numbers for height and weight."
     return render_template('bmi.html', bmi=bmi, category=category)
 
+@app.route('/cmd')
+def cmd():
+    return render_template('cmd.html')
+@app.route('/cmdcommand', methods=['POST'])
+def cmdcommand():
+    command = request.form.get('command')
+    output = subprocess.getoutput(command)
+    return output
+    
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5000)
     

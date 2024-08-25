@@ -23,13 +23,18 @@
             margin-bottom: 20px;
         }
 
-        form {
+        .container {
             background-color: #34495E;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
             max-width: 400px;
             width: 100%;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
         }
 
         label {
@@ -77,27 +82,53 @@
         input[type="submit"]:focus {
             outline: none;
         }
+
+        .message {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .error {
+            color: #E74C3C;
+        }
+
+        .success {
+            color: #27AE60;
+        }
     </style>
 </head>
 <body>
-    <form action="http://127.0.0.1:5000/schedule_email" method="get">
-        <h1>Schedule an Email</h1>
-        <label for="sender_email">Your Email:</label>
-        <input type="email" id="sender_email" name="sender_email" required>
-        
-        <label for="sender_password">Your Password:</label>
-        <input type="password" id="sender_password" name="sender_password" required>
-        
-        <label for="recipient_email">Recipient's Email:</label>
-        <input type="email" id="recipient_email" name="recipient_email" required>
-        
-        <label for="message">Message:</label>
-        <textarea id="message" name="message" required></textarea>
-        
-        <label for="timeinput">Time to Send (HH:MM):</label>
-        <input type="time" id="timeinput" name="timeinput" required>
-        
-        <input type="submit" value="Schedule Email">
-    </form>
+    <div class="container">
+        <form action="/schedule_email" method="post">
+            <h1>Schedule an Email</h1>
+            <label for="sender_email">Your Email:</label>
+            <input type="email" id="sender_email" name="sender_email" required>
+            
+            <label for="sender_password">Your Password:</label>
+            <input type="password" id="sender_password" name="sender_password" required>
+            
+            <label for="recipient_email">Recipient's Email:</label>
+            <input type="email" id="recipient_email" name="recipient_email" required>
+            
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" required></textarea>
+            
+            <label for="timeinput">Time to Send (HH:MM):</label>
+            <input type="time" id="timeinput" name="timeinput" required>
+            
+            <input type="submit" value="Schedule Email">
+            
+            {% if success %}
+            <div class="message success">
+                {{ success }}
+            </div>
+            {% endif %}
+            {% if error %}
+            <div class="message error">
+                {{ error }}
+            </div>
+            {% endif %}
+        </form>
+    </div>
 </body>
 </html>
