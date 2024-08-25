@@ -393,9 +393,9 @@ def docker_img_pull():
     cmd = f"docker pull {image}"
     output = subprocess.getstatusoutput(cmd)
     if output[0] == 0:
-        return render_template("docker_management.html", pull_message="Image downloaded successfully.")
+        return render_template("docker.html", pull_message="Image downloaded successfully.")
     else:
-        return render_template("docker_management.html", pull_message="Image download failed.")
+        return render_template("docker.html", pull_message="Image download failed.")
 @app.route("/launch_docker", methods=["POST"])
 def docker_launch():
     container_name = request.form.get('container_name')
@@ -403,66 +403,66 @@ def docker_launch():
     cmd = f"docker run -dit --name {container_name} {image}"
     output = subprocess.getstatusoutput(cmd)
     if output[0] == 0:
-        return render_template("docker_management.html", launch_message="Docker container launched successfully.")
+        return render_template("docker.html", launch_message="Docker container launched successfully.")
     else:
-        return render_template("docker_management.html", launch_message="Failed to launch Docker container.")
+        return render_template("docker.html", launch_message="Failed to launch Docker container.")
 @app.route("/docker_stop", methods=["POST"])
 def docker_stop():
     container_name = request.form.get('container_name')
     cmd = f"docker stop {container_name}"
     output = subprocess.getstatusoutput(cmd)
     if output[0] == 0:
-        return render_template("docker_management.html", stop_message="Docker container stopped successfully.")
+        return render_template("docker.html", stop_message="Docker container stopped successfully.")
     else:
-        return render_template("docker_management.html", stop_message="Failed to stop Docker container.")
+        return render_template("docker.html", stop_message="Failed to stop Docker container.")
 @app.route("/docker_start", methods=["POST"])
 def docker_start():
     container_name = request.form.get('container_name')
     cmd = f"docker start {container_name}"
     output = subprocess.getstatusoutput(cmd)
     if output[0] == 0:
-        return render_template("docker_management.html", start_message="Docker container started successfully.")
+        return render_template("docker.html", start_message="Docker container started successfully.")
     else:
-        return render_template("docker_management.html", start_message="Failed to start Docker container.")
+        return render_template("docker.html", start_message="Failed to start Docker container.")
 @app.route("/docker_status", methods=["POST"])
 def docker_status():
     container_name = request.form.get('container_name')
     cmd = f"docker ps -a --filter name={container_name} --format '{{{{.ID}}}} {{{{.Names}}}} {{{{.Status}}}}'"
     output = subprocess.getstatusoutput(cmd)
     if output[0] == 0:
-        return render_template("docker_management.html", status_message=output[1])
+        return render_template("docker.html", status_message=output[1])
     else:
-        return render_template("docker_management.html", status_message="Failed to get Docker container status.")
+        return render_template("docker.html", status_message="Failed to get Docker container status.")
 @app.route("/docker_remove", methods=["POST"])
 def docker_remove():
     container_name = request.form.get('container_name')
     cmd = f"docker rm {container_name}"
     output = subprocess.getstatusoutput(cmd)
     if output[0] == 0:
-        return render_template("docker_management.html", remove_message="Docker container removed successfully.")
+        return render_template("docker.html", remove_message="Docker container removed successfully.")
     else:
-        return render_template("docker_management.html", remove_message="Failed to remove Docker container.")
+        return render_template("docker.html", remove_message="Failed to remove Docker container.")
 @app.route("/docker_logs", methods=["POST"])
 def docker_logs():
     container_name = request.form.get('container_name')
     cmd = f"docker logs {container_name}"
     output = subprocess.getstatusoutput(cmd)
     if output[0] == 0:
-        return render_template("docker_management.html", logs_message=output[1])
+        return render_template("docker.html", logs_message=output[1])
     else:
-        return render_template("docker_management.html", logs_message="Failed to get Docker container logs.")
+        return render_template("docker.html", logs_message="Failed to get Docker container logs.")
 @app.route("/docker_image_remove", methods=["POST"])
 def docker_img_remove():
     image = request.form.get('image')
     cmd = f"docker rmi -f {image}"
     output = subprocess.getstatusoutput(cmd)
     if output[0] == 0:
-        return render_template("docker_management.html", img_remove_message="Docker image removed successfully.")
+        return render_template("docker.html", img_remove_message="Docker image removed successfully.")
     else:
-        return render_template("docker_management.html", img_remove_message="Failed to remove Docker image.")
+        return render_template("docker.html", img_remove_message="Failed to remove Docker image.")
 @app.route("/docker")
 def docker_management():
-    return render_template("docker_management.html")
+    return render_template("docker.html")
 
 
 @app.route('/ml', methods=['GET', 'POST'])
