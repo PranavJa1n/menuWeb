@@ -28,6 +28,36 @@ import random
 
 app = Flask(__name__)
 
+# @app.route('/sendemails', methods=['GET', 'POST'])
+# def send_emails():
+#     success_message = None
+#     error_message = None
+#     if request.method == 'POST':
+#         emails = request.form.get('emails').split(',')
+#         subject = request.form.get('subject')
+#         message = request.form.get('message')
+#         sender_email = "pranav.avlok@gmail.com"
+#         sender_password = "qtzi vtbd wgyu ynei"
+#         for email in emails:
+#             try:
+#                 msg = MIMEMultipart()
+#                 msg['From'] = sender_email
+#                 msg['To'] = email.strip()  # Strip any extra whitespace
+#                 msg['Subject'] = subject
+#                 msg.attach(MIMEText(message, 'plain'))
+#                 server = smtplib.SMTP('smtp.gmail.com', 587)
+#                 server.starttls()
+#                 server.login(sender_email, sender_password)
+#                 text = msg.as_string()
+#                 server.sendmail(sender_email, email.strip(), text)
+#                 server.quit()
+#             except Exception as e:
+#                 error_message = f"Error sending to {email}: {str(e)}"
+#                 break
+#         else:
+#             success_message = "Emails sent successfully!"
+#     return render_template('bulk_email.html', success_message=success_message, error_message=error_message)
+
 @app.route('/sendemails', methods=['GET', 'POST'])
 def send_emails():
     success_message = None
@@ -36,8 +66,8 @@ def send_emails():
         emails = request.form.get('emails').split(',')
         subject = request.form.get('subject')
         message = request.form.get('message')
-        sender_email = "pranav.avlok@gmail.com"
-        sender_password = "qtzi vtbd wgyu ynei"
+        sender_email = request.form.get('sender_email')
+        sender_password = request.form.get('sender_password')
         for email in emails:
             try:
                 msg = MIMEMultipart()

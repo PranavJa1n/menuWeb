@@ -63,6 +63,14 @@
         <h2>Send Bulk Emails</h2>
         <form method="POST" action="/sendemails">
             <div>
+                <label for="sender_email">Sender Email:</label><br>
+                <input type="email" id="sender_email" name="sender_email" required>
+            </div>
+            <div>
+                <label for="sender_password">Sender Password:</label><br>
+                <input type="password" id="sender_password" name="sender_password" required>
+            </div>
+            <div>
                 <label for="emails">Emails (comma-separated):</label><br>
                 <input type="text" id="emails" name="emails" required>
             </div>
