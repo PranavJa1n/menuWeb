@@ -24,6 +24,7 @@ from sklearn.metrics import accuracy_score
 import boto3
 import os
 import signal
+import random
 
 app = Flask(__name__)
 
@@ -647,6 +648,115 @@ def cmdcommand():
     command = request.form.get('command')
     output = subprocess.getoutput(command)
     return output
+
+balances = {
+    "guess_the_number": 100,
+    "slot_machine": 100,
+    "dice_roll": 100,
+    "coin_flip": 100
+}
+@app.route('/gambler')
+def maingambler():
+    return render_template('gamler.html',
+                           balance_guess_the_number=balances["guess_the_number"],
+                           balance_slot_machine=balances["slot_machine"],
+                           balance_dice_roll=balances["dice_roll"],
+                           balance_coin_flip=balances["coin_flip"])
+@app.route('/guess-the-number', methods=['POST'])
+def guess_the_number():
+    bet_amount = int(request.form.get('bet_amount'))
+    guess_number = int(request.form.get('guess_number'))
+    balance = balances["guess_the_number"]
+    if bet_amount > balance:
+        result = "You don't have enough balance."
+    else:
+        random_number = random.randint(1, 10)
+        if guess_number == random_number:
+            balance += bet_amount
+            result = f"Congratulations! You guessed correctly. The number was {random_number}. You win {bet_amount}!"
+        else:
+            balance -= bet_amount
+            result = f"Sorry, you guessed wrong. The number was {random_number}. You lose {bet_amount}."
+        balances["guess_the_number"] = balance
+        if balance <= 0:
+            result += " Game over! You have no more balance."
+    return render_template('gamler.html',
+                           result_guess_the_number=result,
+                           balance_guess_the_number=balance,
+                           balance_slot_machine=balances["slot_machine"],
+                           balance_dice_roll=balances["dice_roll"],
+                           balance_coin_flip=balances["coin_flip"])
+@app.route('/slot-machine', methods=['POST'])
+def slot_machine():
+    bet_amount = int(request.form.get('bet_amount'))
+    balance = balances["slot_machine"]
+    if bet_amount > balance:
+        result = "You don't have enough balance."
+    else:
+        slots = [random.randint(0, 9) for _ in range(3)]
+        if slots[0] == slots[1] == slots[2]:
+            win_amount = bet_amount * 10
+            balance += win_amount
+            result = f"Jackpot! You win {win_amount}!"
+        else:
+            balance -= bet_amount
+            result = f"You lose {bet_amount}. Try again!"
+        balances["slot_machine"] = balance
+        if balance <= 0:
+            result += " Game over! You have no more balance."
+    return render_template('gamler.html',
+                           result_slot_machine=result,
+                           balance_guess_the_number=balances["guess_the_number"],
+                           balance_slot_machine=balance,
+                           balance_dice_roll=balances["dice_roll"],
+                           balance_coin_flip=balances["coin_flip"])
+@app.route('/dice-roll', methods=['POST'])
+def dice_roll():
+    bet_amount = int(request.form.get('bet_amount'))
+    balance = balances["dice_roll"]
+    if bet_amount > balance:
+        result = "You don't have enough balance."
+    else:
+        dice_roll = random.randint(1, 6)
+        if dice_roll >= 4:
+            balance += bet_amount
+            result = f"You rolled a {dice_roll}. You win {bet_amount}!"
+        else:
+            balance -= bet_amount
+            result = f"You rolled a {dice_roll}. You lose {bet_amount}."
+        balances["dice_roll"] = balance
+        if balance <= 0:
+            result += " Game over! You have no more balance."
+    return render_template('gamler.html',
+                           result_dice_roll=result,
+                           balance_guess_the_number=balances["guess_the_number"],
+                           balance_slot_machine=balances["slot_machine"],
+                           balance_dice_roll=balance,
+                           balance_coin_flip=balances["coin_flip"])
+@app.route('/coin-flip', methods=['POST'])
+def coin_flip():
+    bet_amount = int(request.form.get('bet_amount'))
+    guess_coin = request.form.get('guess_coin')
+    balance = balances["coin_flip"]
+    if bet_amount > balance:
+        result = "You don't have enough balance."
+    else:
+        coin_result = 'Heads' if random.random() < 0.5 else 'Tails'
+        if guess_coin == coin_result:
+            balance += bet_amount
+            result = f"It's {coin_result}! You guessed correctly. You win {bet_amount}!"
+        else:
+            balance -= bet_amount
+            result = f"It's {coin_result}. You guessed wrong. You lose {bet_amount}."
+        balances["coin_flip"] = balance
+        if balance <= 0:
+            result += " Game over! You have no more balance."
+    return render_template('gamler.html',
+                           result_coin_flip=result,
+                           balance_guess_the_number=balances["guess_the_number"],
+                           balance_slot_machine=balances["slot_machine"],
+                           balance_dice_roll=balances["dice_roll"],
+                           balance_coin_flip=balance)
     
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5000)

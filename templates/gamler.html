@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gambling Games</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: #121212;
+            color: #0f0;
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            margin-bottom: 20px;
+            font-size: 2.5em;
+            letter-spacing: 2px;
+            text-shadow: 0 0 5px #0f0, 0 0 10px #0f0;
+        }
+        .games-container {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            max-width: 1200px;
+            flex-wrap: wrap;
+        }
+        .game-container {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+            width: 23%;
+            text-align: center;
+            margin: 0 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .game-container:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+        }
+        .balance, .bet, .guess, .dice, .coin {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 1em;
+            color: #aaa;
+        }
+        input[type="number"], select {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 1em;
+            background: #1f1f1f;
+            color: #0f0;
+            text-shadow: 0 0 5px #0f0;
+        }
+        button {
+            background: #0f0;
+            color: #000;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background 0.3s ease, color 0.3s ease;
+            margin-bottom: 10px;
+        }
+        button:hover {
+            background: #0a0;
+            color: #fff;
+        }
+        .result {
+            margin-top: 15px;
+            font-size: 1.2em;
+        }
+        .slot-machine {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+        .slot {
+            background: #333;
+            color: #0f0;
+            font-size: 2em;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            text-shadow: 0 0 5px #0f0, 0 0 10px #0f0;
+        }
+        .coin {
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h1>Gambling Games</h1>
+    <div class="games-container">
+        <!-- Guess the Number Game -->
+        <div class="game-container">
+            <h2>Guess the Number</h2>
+            <div class="balance">Balance: <span>{{ balance_guess_the_number }}</span></div>
+            <form action="/guess-the-number" method="POST">
+                <div class="bet">
+                    <label for="bet-amount1">Bet Amount:</label>
+                    <input type="number" id="bet-amount1" name="bet_amount" min="1" max="100" value="10">
+                </div>
+                <div class="guess">
+                    <label for="guess-number">Guess a number (1-10):</label>
+                    <input type="number" id="guess-number" name="guess_number" min="1" max="10" value="1">
+                </div>
+                <button type="submit">Place Bet</button>
+            </form>
+            {% if result_guess_the_number %}
+            <div class="result">{{ result_guess_the_number }}</div>
+            {% endif %}
+        </div>
+
+        <!-- Slot Machine Game -->
+        <div class="game-container">
+            <h2>Slot Machine</h2>
+            <div class="balance">Balance: <span>{{ balance_slot_machine }}</span></div>
+            <form action="/slot-machine" method="POST">
+                <div class="bet">
+                    <label for="bet-amount2">Bet Amount:</label>
+                    <input type="number" id="bet-amount2" name="bet_amount" min="1" max="100" value="10">
+                </div>
+                <button type="submit">Spin Slots</button>
+            </form>
+            {% if result_slot_machine %}
+            <div class="result">{{ result_slot_machine }}</div>
+            {% endif %}
+        </div>
+
+        <!-- Dice Roll Game -->
+        <div class="game-container">
+            <h2>Dice Roll</h2>
+            <div class="balance">Balance: <span>{{ balance_dice_roll }}</span></div>
+            <form action="/dice-roll" method="POST">
+                <div class="bet">
+                    <label for="bet-amount3">Bet Amount:</label>
+                    <input type="number" id="bet-amount3" name="bet_amount" min="1" max="100" value="10">
+                </div>
+                <button type="submit">Roll Dice</button>
+            </form>
+            {% if result_dice_roll %}
+            <div class="result">{{ result_dice_roll }}</div>
+            {% endif %}
+        </div>
+
+        <!-- Coin Flip Game -->
+        <div class="game-container">
+            <h2>Coin Flip</h2>
+            <div class="balance">Balance: <span>{{ balance_coin_flip }}</span></div>
+            <form action="/coin-flip" method="POST">
+                <div class="bet">
+                    <label for="bet-amount4">Bet Amount:</label>
+                    <input type="number" id="bet-amount4" name="bet_amount" min="1" max="100" value="10">
+                </div>
+                <div class="guess">
+                    <label for="guess-coin">Guess Heads or Tails:</label>
+                    <select id="guess-coin" name="guess_coin">
+                        <option value="Heads">Heads</option>
+                        <option value="Tails">Tails</option>
+                    </select>
+                </div>
+                <button type="submit">Flip Coin</button>
+            </form>
+            {% if result_coin_flip %}
+            <div class="result">{{ result_coin_flip }}</div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
