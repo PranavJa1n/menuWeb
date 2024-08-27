@@ -32,6 +32,13 @@
             align-items: center;
         }
 
+        input[type="text"] {
+            margin-bottom: 15px;
+            border: 2px solid #F1C40F;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        
         input[type="file"] {
             margin-bottom: 15px;
             color: #ECF0F1;
@@ -65,19 +72,18 @@
         }
 
         .success {
-            background-color: #2ECC71;
-            color: #2C3E50;
+            color: #2ECC71;
         }
 
         .error {
-            background-color: #E74C3C;
-            color: #ECF0F1;
+            color: #E74C3C;
         }
     </style>
 </head>
 <body>
     <h1>Upload File to S3</h1>
     <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="text" name="bucketname" placeholder="Enter the bucket name">
         <input type="file" name="file">
         <input type="submit" value="Upload">
     </form>

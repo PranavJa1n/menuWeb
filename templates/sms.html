@@ -145,6 +145,7 @@
             background-color: #ECF0F1;
             color: #2C3E50;
             font-size: 16px;
+            box-sizing: border-box; /* Added to ensure equal spacing on both sides */
         }
 
         input[type="submit"] {
@@ -176,25 +177,17 @@
         }
 
         .success {
-            background-color: #2ECC71;
-            color: #2C3E50;
+            color: #2ECC71;
         }
 
         .error {
-            background-color: #E74C3C;
-            color: #ECF0F1;
+            color: #E74C3C;
         }
     </style>
 </head>
 <body>
     <form action="{{ url_for('sms_') }}" method="POST">
         <h1>Send an SMS</h1>
-
-        {% if success %}
-            <div class="message success">{{ success }}</div>
-        {% elif error %}
-            <div class="message error">{{ error }}</div>
-        {% endif %}
 
         <label for="accountsid">Twilio Account SID:</label>
         <input type="text" id="accountsid" name="accountsid" required>
@@ -212,6 +205,13 @@
         <input type="text" id="to_phno" name="to_phno" required>
         
         <input type="submit" value="Send">
+    
+    {% if success %}
+        <div class="message success">{{ success }}</div>
+    {% elif error %}
+        <div class="message error">{{ error }}</div>
+    {% endif %}
+
     </form>
 </body>
 </html>

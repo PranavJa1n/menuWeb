@@ -638,7 +638,7 @@ def upload_file():
     file = request.files['file']
     if file.filename == '':
         return render_template('s3.html', message="No selected file")
-    bucket_name = 'mymenuprojectbucket'
+    bucket_name = request.form.get('bucketname')#'mymenuprojectbucket'
     try:
         s3.upload_fileobj(file, bucket_name, file.filename)
         message = f"File '{file.filename}' uploaded to bucket '{bucket_name}'."
