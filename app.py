@@ -787,8 +787,15 @@ def coin_flip():
                            balance_slot_machine=balances["slot_machine"],
                            balance_dice_roll=balances["dice_roll"],
                            balance_coin_flip=balance)
-    
+
+@app.route('/lhtmli')
+def interpreterhtml():
+    return render_template('lhtmli.html')
+@app.route('/interpret', methods=['POST'])
+def interpret():
+    user_html = request.form.get('html_code')
+    return user_html
+
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5000)
-    
     
