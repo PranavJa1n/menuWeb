@@ -23,7 +23,6 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
 import boto3
 import os
-import signal
 import random
 
 app = Flask(__name__)
@@ -155,7 +154,7 @@ def gsearch():
     r = []
     if query:
         count = 0
-        for j in search(query, num_results=5):
+        for j in search(query):
             r.append(j)
             count += 1
             if count == 5:
