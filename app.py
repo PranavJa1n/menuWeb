@@ -795,5 +795,30 @@ def interpret():
     user_html = request.form.get('html_code')
     return user_html
 
+@app.route('/compound', methods=['GET', 'POST'])
+def compound():
+    if request.method == "POST":
+        principal = float(request.form.get('principal'))
+        rate = float(request.form.get('rate'))
+        rate /= 100
+        timeC = float(request.form.get('timeC'))
+        time = float(request.form.get('time'))
+        amt = principal*(1+rate/timeC)**(timeC*time)
+        amt = float(format(amt, '.2f'))
+        return render_template('compound.html', amt = amt)
+    return render_template("compound.html")
+
+@app.route('/simple', methods=['GET', 'POST'])
+def simple():
+    if request.method == "POST":
+        principal = float(request.form.get('principal'))
+        rate = float(request.form.get('rate'))
+        time = float(request.form.get('time'))
+        amt = (principal*rate*time)/100
+        amt += principal
+        amt = float(format(amt, '.2f'))
+        return render_template('simple.html', amt = amt)
+    return render_template("simple.html")
+
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5000)
