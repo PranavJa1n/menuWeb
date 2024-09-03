@@ -82,10 +82,9 @@
             color: #F1C40F;
         }
 
-        /* Adjusting the content area for better alignment */
         .main-content {
             text-align: center;
-            margin-top: 60px; /* Ensure content is below navbar */
+            margin-top: 60px;
             padding: 20px;
         }
 
@@ -98,9 +97,10 @@
         .typewriter {
             display: flex;
             justify-content: center;
-            align-items: center; /* This aligns the items vertically */
+            align-items: center;
             font-size: 24px;
             margin-top: 20px;
+            position: relative;
         }
 
         .typewriter .static-text {
@@ -111,45 +111,23 @@
 
         .typewriter .dynamic-text {
             margin-left: 8px;
-            line-height: 24px;
-            height: 24px;
-            overflow: hidden;
-        }
-
-        .dynamic-text li {
-            list-style: none;
             color: #F1C40F;
-            font-size: 24px;
             font-weight: 500;
+            display: inline-block;
             position: relative;
-            top: 0;
-            animation: slide 20s steps(5) infinite;
         }
 
-        @keyframes slide {
-            100% {
-                top: -120px;
-            }
+        .typewriter .cursor {
+            color: #F1C40F;
+            font-weight: 500;
+            margin-left: 5px;
+            font-size: 24px; /* Adjust the font size to control the cursor thickness */
+            animation: blink 0.7s step-start infinite;
         }
 
-        .dynamic-text li::after {
-            content: "";
-            left: 0;
-            position: absolute;
-            height: 100%;
-            width: 100%;
-            border-left: 2px solid #F1C40F;
-            animation: typing 4s steps(15) infinite;
-            background-color: #2C3E50;
-        }
-
-        @keyframes typing {
-            40%,
-            60% {
-                left: calc(100%);
-            }
-            100% {
-                left: 0;
+        @keyframes blink {
+            50% {
+                opacity: 0;
             }
         }
 
@@ -160,7 +138,6 @@
             line-height: 1.6;
             color: #ECF0F1;
         }
-        
     </style>
 </head>
 <body>
@@ -176,24 +153,53 @@
     </div>
 
     <div class="main-content">
-        <!--<div class="profile-pic">
-            <img src="myPhoto.jpeg" alt="Profile Picture" style="width: 100%; height: 100%;">
-        </div>-->
         <div class="photo-container">
             <div class="photo-circle"></div>
         </div>
         <h1>PRANAV JAIN</h1>
         <div class="typewriter">
             <div class="static-text">I am</div>
-            <ul class="dynamic-text">
-                <li><span>Tech Enthusiast</span></li>
-                <li><span>Coder</span></li>
-                <li><span>Developer</span></li>
-                <li><span>Problem Solver</span></li>
-                <li><span>Innovator</span></li>
-            </ul>
-        </div>
+            <div class="dynamic-text"></div>
+            <div class="cursor">|</div> <!-- Using a vertical bar as the cursor -->
+        </div><br>
         <p>I am Pranav Jain, the Co-Founder and CTO of Service Lane, driven by a passion for innovation and technology. To me, every challenge is an opportunity to create solutions that make life easier and more connected. My journey in computer science, combined with my deep interest in Python, Linux, and cloud computing, shapes how I approach problems with curiosity, creativity, and a commitment to continuous learning. I believe in the power of technology to transform lives, and my goal is to bridge the gap between people and the services they need through innovative, tech-driven solutions.</p>
     </div>
+
+    <script>
+        const words = ["Tech Enthusiast", "Coder", "Developer", "Problem Solver", "Innovator"];
+        let i = 0;
+        let j = 0;
+        let isDeleting = false;
+        const speed = 100; // Speed of typing/deleting in ms
+        const pauseTime = 1500; // Time to pause after a word is typed
+
+        function typeWriter() {
+            const dynamicText = document.querySelector(".dynamic-text");
+            const cursor = document.querySelector(".cursor");
+            let currentWord = words[i];
+            let displayText = currentWord.slice(0, j);
+
+            dynamicText.textContent = displayText;
+
+            if (!isDeleting && j < currentWord.length) {
+                j++;
+                setTimeout(typeWriter, speed);
+            } else if (isDeleting && j > 0) {
+                j--;
+                setTimeout(typeWriter, speed);
+            } else if (!isDeleting && j === currentWord.length) {
+                setTimeout(() => {
+                    isDeleting = true;
+                    setTimeout(typeWriter, speed);
+                }, pauseTime);
+            } else if (isDeleting && j === 0) {
+                isDeleting = false;
+                i = (i + 1) % words.length;
+                setTimeout(typeWriter, speed);
+            }
+        }
+
+        typeWriter();
+    </script>
 </body>
 </html>
