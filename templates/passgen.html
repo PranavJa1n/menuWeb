@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Generator</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #2C3E50;
+            color: #ECF0F1;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        h1 {
+            color: #F1C40F;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+            background-color: #34495E;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        input {
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #95A5A6;
+            background-color: #ECF0F1;
+            color: #2C3E50;
+            margin-bottom: 10px;
+            width: 100px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #F1C40F;
+            color: #2C3E50;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #D4AC0D;
+        }
+
+        p {
+            font-size: 18px;
+            margin-top: 20px;
+            color: #F1C40F;
+        }
+
+        strong {
+            color: #F1C40F;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Password Generator</h1>
+        <form action="http://127.0.0.1:5000/passgen" method="POST">
+            <label for="passlength">Password Length:</label><br><br>
+            <input type="number" id="passlength" name="passlength" min="1" required><br><br>
+            <button type="submit">Generate Password</button>
+        </form>
+
+        {% if password %}
+        <p>Your Generated Password: <br> <strong>{{ password }}</strong></p>
+        {% endif %}
+    </div>
+</body>
+</html>
