@@ -1,0 +1,259 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #2b2b2b;
+    color: #f0f0f0;
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.circle-photo {
+    width: 175px;
+    height: 175px;
+    border-radius: 50%;
+    background-color: #ECF0F1;
+    background-image: url('myPhoto.jpeg'); /* Replace 'myPhoto.jpeg' with your actual photo file */
+    background-size: cover;
+    background-position: center;
+}
+
+h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    color: #f39c12;
+}
+h2 {
+    font-size: 40px;
+    margin-bottom: 20px;
+    color: #f39c12;
+}
+.text-links {
+    display: flex;
+    gap: 30px;
+    margin: 20px 0;
+}
+
+.text-link {
+    font-size: 20px;
+    color: #f0f0f0; /* Base color */
+    cursor: pointer;
+    position: relative;
+    text-decoration: none; /* Remove the default underline */
+}
+
+.text-link:hover {
+    color: #f39c12;
+}
+
+.text-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: #f39c12;
+    bottom: -5px;
+    left: 0;
+    transition: width 0.3s ease-in-out;
+}
+
+.text-link:hover::after {
+    width: 100%;
+}
+
+.scroll-section {
+    margin-top: 75px; /* Move the About Me section down by 1/6th of the viewport height */
+    font-size: 20px;
+    line-height: 1.6;
+    min-height: 90vh;
+}
+
+.scroll-section h1 {
+    font-size: 36px;
+    color: #f39c12;
+    margin-bottom: 20px;
+}
+
+.scroll-section p {
+    width: 60%;
+    margin: 0 auto;
+    font-size: 20px;
+}
+
+.scroll-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.scroll-section ul li {
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+.social-icons {
+    margin-top: 20px;
+}
+
+.social-icons a {
+    color: #ECF0F1;
+    margin: 0 10px;
+    font-size: 24px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #e67e22;
+}
+
+/* Back to Top Button */
+#backToTop {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background-color: #f39c12;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    display: none; /* Hidden by default */
+    z-index: 1000;
+    transition: opacity 0.3s ease;
+    cursor: pointer;
+    font-size: 24px;
+    line-height: 50px;
+    text-align: center;
+}
+
+#backToTop:hover {
+    background-color: #e67e22;
+}
+
+#backToTop i {
+    vertical-align: middle;
+}
+
+/* Smooth scroll effect */
+html {
+    scroll-behavior: smooth;
+}
+
+/* New About Me styling with split layout */
+.about-me-container {
+    display: flex;
+    height: 100vh;
+    background-color: #2b2b2b;
+}
+
+.about-me-text {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; /* Aligns the text close to the vertical divider */
+    flex-direction: column;
+    padding-right: 20px; /* Adjust this padding to control the distance from the divider */
+    background-color: #2b2b2b;
+    text-align: right;
+    color: #f0f0f0;
+}
+
+.about-me-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0; /* Remove gap between lines */
+    align-items: flex-end; /* Align lines to the right */
+    width: 80%;
+}
+
+.line {
+    font-size: 18px;
+    margin: 0; /* Remove margin to eliminate extra space */
+    line-height: 1.6;
+    opacity: 0; /* Hide initially */
+    transition: opacity 0.5s ease-in; /* Smooth fade-in effect */
+}
+
+.about-me-text h1 {
+    font-size: 64px;
+    font-weight: bold;
+    margin: 0;
+    text-transform: uppercase;
+    color: #f39c12;
+    letter-spacing: 2px;
+}
+
+.about-me-image {
+    flex: 1;
+    background: url('aboutPhoto.png') no-repeat center center;
+    background-size: cover;
+}
+
+/* Vertical line in between */
+.vertical-divider {
+    width: 4px;
+    background-color: #2b2b2b;
+}
+
+.typewriter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    margin-top: 20px;
+    position: relative;
+}
+
+.typewriter .static-text {
+    color: #ECF0F1;
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.typewriter .dynamic-text {
+    margin-left: 8px;
+    color: #f39c12;
+    font-weight: 500;
+    display: inline-block;
+    position: relative;
+}
+
+/* .typewriter .cursor {
+    color: #f39c12;
+    font-weight: 500;
+    margin-left: 5px;
+    font-size: 24px; /* Adjust the font size to control the cursor thickness */
+    /*animation: blink 0.7s step-start infinite;
+} */
+
+/* .typewriter .cursor {
+    display: inline-block;
+    width: 10px; /* Adjust the width of the cursor 
+    height: 24px; /* Adjust the height to match the text size 
+    border-right: 2px solid #f39c12; /* Creates the cursor using border-right 
+    margin-left: 5px;
+    animation: blink 0.7s step-start infinite; /* Blinking effect 
+    vertical-align: bottom; /* Aligns the cursor with the text 
+} */
+
+.typewriter .cursor {
+    display: inline-block;
+    width: 2px; /* Narrower width for a thin cursor */
+    height: 24px; /* Adjust the height to match the text */
+    border-right: 2px solid #f39c12; /* Creates the cursor using border-right */
+    animation: blink 0.7s step-start infinite; /* Blinking effect */
+    vertical-align: bottom; /* Aligns the cursor with the text */
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}

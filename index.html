@@ -5,100 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pranav Jain</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: #2C3E50;
-            color: #ECF0F1;
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            text-align: center;
-        }
-
-        .container {
-            max-width: 600px;
-        }
-
-        h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
-        }
-
-        nav {
-            margin-bottom: 30px;
-        }
-
-        nav a {
-            color: #ECF0F1;
-            margin: 0 15px;
-            text-decoration: none;
-            font-size: 18px;
-            position: relative;
-            display: inline-block;
-            padding-bottom: 5px;
-        }
-
-        nav a::before {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 2px;
-            bottom: 0;
-            left: 0;
-            background-color: #F1C40F;
-            visibility: hidden;
-            transform: scaleX(0);
-            transition: all 0.3s ease-in-out;
-        }
-
-        nav a:hover::before {
-            visibility: visible;
-            transform: scaleX(1);
-        }
-        
-        nav a:hover {
-            color: #F1C40F;
-        }
-
-        /* Highlight the Home link by default */
-        nav a.home-link {
-            color: #F1C40F;
-        }
-
-        .social-icons {
-            margin-top: 20px;
-        }
-
-        .social-icons a {
-            color: #ECF0F1;
-            margin: 0 10px;
-            font-size: 24px;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .social-icons a:hover {
-            color: #F1C40F;
-        }
-
-    </style>
+    <link rel="stylesheet" href="index.css">
 </head>
 <body>
-    <div class="container">
+    <div class="container" id="topSection">
+        <div class="circle-photo"></div>
         <h1 id="name">PRANAV JAIN</h1>
-        <nav>
-            <a href="#home" class="home-link">Home</a>
-            <a href="aboutMe.html">About</a>
-            <a href="project.html">Projects</a>
-        </nav>
+
+        <div class="text-links">
+            <a href="#about" class="text-link">About Me</a>
+            <a href="mySkills.html" class="text-link">My Skills</a>
+            <a href="myProjects.html" class="text-link">My Projects</a>
+        </div>
+
         <div class="social-icons">
             <a href="https://www.linkedin.com/in/pranav-jain-4201bb246" target="_blank"><i class="fab fa-linkedin"></i></a>
             <a href="https://github.com/PranavJa1n" target="_blank"><i class="fab fa-github"></i></a>
         </div>
     </div>
+    <div id="about" class="about-me-container">
+        <div class="about-me-text">
+            <div class="typewriter">
+                <div class="static-text">I am</div>
+                <div class="dynamic-text"></div>
+                <div class="cursor"></div>
+            </div><br>
+            <div class="about-me-content">
+                <div class="line" data-text="Pranav Jain, the Co-Founder and CTO of Service Lane, driven by a"></div>
+                <div class="line" data-text="passion for innovation and technology. To me, every challenge is an"></div>
+                <div class="line" data-text="opportunity to create solutions that make life easier and more connected."></div>
+                <div class="line" data-text="My journey in computer science, combined with my deep interest in"></div>
+                <div class="line" data-text="Python, Linux, and cloud computing, shapes how I approach problems with"></div>
+                <div class="line" data-text="curiosity, creativity, and a commitment to continuous learning. I believe in"></div>
+                <div class="line" data-text="the power of technology to transform lives, and my goal is to bridge the"></div>
+                <div class="line" data-text="gap between people and the services they need through innovative, tech-"></div>
+                <div class="line" data-text="driven solutions."></div>
+            </div>
+        </div>
+        <div class="vertical-divider"></div>
+        <div class="about-me-image">
+        </div>
+    </div>  
+
+    <button id="backToTop"><i class="fas fa-arrow-up"></i></button>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="index.js"></script>
 </body>
 </html>
