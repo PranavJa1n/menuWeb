@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head> 
     <meta charset="UTF-8">
     <title>Upload File to S3</title>
     <style>
         body {
-            background-color: #2C3E50;
+            background-color: #2b2b2b;
             color: #ECF0F1;
             font-family: 'Arial', sans-serif;
             display: flex;
@@ -17,13 +17,13 @@
         }
 
         h1 {
-            color: #F1C40F;
+            color: #f39c12;
             font-size: 2.5em;
             margin-bottom: 20px;
         }
 
         form {
-            background-color: #34495E;
+            background-color: #3b3b3b;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
@@ -34,7 +34,9 @@
 
         input[type="text"] {
             margin-bottom: 15px;
-            border: 2px solid #F1C40F;
+            border: 2px solid #f39c12;
+            background-color: #2b2b2b;
+            color: #ECF0F1;
             padding: 10px;
             border-radius: 5px;
         }
@@ -42,15 +44,15 @@
         input[type="file"] {
             margin-bottom: 15px;
             color: #ECF0F1;
-            background-color: #2C3E50;
-            border: 2px solid #F1C40F;
+            background-color: #2b2b2b;
+            border: 2px solid #f39c12;
             padding: 10px;
             border-radius: 5px;
         }
 
         input[type="submit"] {
-            background-color: #F1C40F;
-            color: #2C3E50;
+            background-color: #f39c12;
+            color: #ECF0F1;
             border: none;
             padding: 10px 20px;
             border-radius: 5px;
@@ -60,7 +62,7 @@
         }
 
         input[type="submit"]:hover {
-            background-color: #D4AC0D;
+            background-color: #e67e22;
         }
 
         .message {
@@ -78,9 +80,28 @@
         .error {
             color: #E74C3C;
         }
+        .back-button {
+            position: absolute;
+            top: 25px;
+            left: 25px;
+            background: none;
+            border: none;
+            color: #ffffff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .back-button i {
+            margin-right: 10px;
+        }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
+    <a href="/projects" class="back-button">
+        <i class="fas fa-arrow-left"></i>
+    </a>
     <h1>Upload File to S3</h1>
     <form action="/upload" method="post" enctype="multipart/form-data">
         <input type="text" name="bucketname" placeholder="Enter the bucket name">

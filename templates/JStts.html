@@ -6,20 +6,20 @@
     <title>Speech to Text</title>
     <style>
         body {
-            background-color: #2C3E50; /* Dark background color */
-            color: #ECF0F1; /* Light text color */
+            background-color: #2b2b2b;
+            color: #ECF0F1; 
             font-family: 'Arial', sans-serif;
             text-align: center;
             margin: 0;
-            padding: 0;
+            padding: 0; 
         }
         h1 {
-            color: #F1C40F; /* Highlight color for headings */
+            color: #f39c12;
             margin-top: 50px;
         }
-        button {
-            background-color: #34495E; /* Button background color */
-            color: #ECF0F1; /* Button text color */
+        button { 
+            background-color: #3b3b3b;
+            color: #ECF0F1;
             border: none;
             border-radius: 5px;
             padding: 10px 20px;
@@ -32,15 +32,34 @@
             cursor: not-allowed;
         }
         button:hover:not(:disabled) {
-            background-color: #1ABC9C; /* Button hover color */
+            background-color: #f39c12; /* Button hover color */
         }
         p {
             font-size: 18px;
             margin-top: 20px;
         }
+        .back-button {
+            position: absolute;
+            top: 25px;
+            left: 25px;
+            background: none;
+            border: none;
+            color: #ffffff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .back-button i {
+            margin-right: 10px;
+        }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
+    <a href="/projects" class="back-button">
+        <i class="fas fa-arrow-left"></i>
+    </a>
     <h1>Speech to Text</h1>
     <button id="start-btn">Start Listening</button>
     <button id="stop-btn" disabled>Stop Listening</button>

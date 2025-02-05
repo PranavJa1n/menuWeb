@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pranav Jain</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+
 </head>
 <body>
     <div class="container" id="topSection">
@@ -14,8 +15,8 @@
 
         <div class="text-links">
             <a href="#about" class="text-link">About Me</a>
-            <a href="mySkills.html" class="text-link">My Skills</a>
-            <a href="myProjects.html" class="text-link">My Projects</a>
+            <a href="/skill" class="text-link">My Skills</a>
+            <a href="/projects" class="text-link">My Projects</a>
         </div>
 
         <div class="social-icons">
@@ -50,6 +51,6 @@
     <button id="backToTop"><i class="fas fa-arrow-up"></i></button>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="index.js"></script>
+    <script src="{{ url_for('static', filename='index.js') }}"></script>
 </body>
 </html>

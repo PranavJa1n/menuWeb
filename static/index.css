@@ -20,7 +20,7 @@ body {
     height: 175px;
     border-radius: 50%;
     background-color: #ECF0F1;
-    background-image: url('myPhoto.jpeg'); /* Replace 'myPhoto.jpeg' with your actual photo file */
+    background-image: url('../static/images/myPhoto.jpeg');
     background-size: cover;
     background-position: center;
 }
@@ -192,7 +192,7 @@ html {
 
 .about-me-image {
     flex: 1;
-    background: url('aboutPhoto.png') no-repeat center center;
+    background: url('../static/images/aboutPhoto.png') no-repeat center center;
     background-size: cover;
 }
 
@@ -225,31 +225,13 @@ html {
     position: relative;
 }
 
-/* .typewriter .cursor {
-    color: #f39c12;
-    font-weight: 500;
-    margin-left: 5px;
-    font-size: 24px; /* Adjust the font size to control the cursor thickness */
-    /*animation: blink 0.7s step-start infinite;
-} */
-
-/* .typewriter .cursor {
-    display: inline-block;
-    width: 10px; /* Adjust the width of the cursor 
-    height: 24px; /* Adjust the height to match the text size 
-    border-right: 2px solid #f39c12; /* Creates the cursor using border-right 
-    margin-left: 5px;
-    animation: blink 0.7s step-start infinite; /* Blinking effect 
-    vertical-align: bottom; /* Aligns the cursor with the text 
-} */
-
 .typewriter .cursor {
     display: inline-block;
-    width: 2px; /* Narrower width for a thin cursor */
-    height: 24px; /* Adjust the height to match the text */
-    border-right: 2px solid #f39c12; /* Creates the cursor using border-right */
-    animation: blink 0.7s step-start infinite; /* Blinking effect */
-    vertical-align: bottom; /* Aligns the cursor with the text */
+    width: 2px;
+    height: 24px;
+    border-right: 2px solid #f39c12;
+    animation: blink 0.7s step-start infinite;
+    vertical-align: bottom;
 }
 
 @keyframes blink {

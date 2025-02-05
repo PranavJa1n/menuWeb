@@ -58,6 +58,38 @@ app = Flask(__name__)
 #             success_message = "Emails sent successfully!"
 #     return render_template('bulk_email.html', success_message=success_message, error_message=error_message)
 
+@app.route("/")
+def home():
+    return render_template("index.html")
+
+@app.route("/projects")
+def projects():
+    return render_template("myProjects.html")
+
+@app.route("/skill")
+def about():
+    return render_template("mySkills.html")
+
+@app.route("/cf")
+def cf():
+    return render_template("camfilter.html")
+
+@app.route("/cTTS")
+def cTTS():
+    return render_template("convertTextToSpeech.html")
+
+@app.route("/jsTTS")
+def jsTTS():
+    return render_template("JStts.html")
+
+@app.route("/jv")
+def jv():
+    return render_template("jsvid.html")
+
+@app.route("/jsp")
+def jsp():
+    return render_template("photoJS.html")
+
 @app.route('/sendemails', methods=['GET', 'POST'])
 def send_emails():
     success_message = None
@@ -149,7 +181,7 @@ def geo():
                 error = "Location not found"
     return render_template('geo.html', latitude=latitude, longitude=longitude, error=error)
         
-@app.route("/gsearch", methods=["POST"])
+@app.route("/gsearch", methods=["GET","POST"])
 def gsearch():
     query = request.form.get("query")
     r = []
@@ -299,16 +331,12 @@ def camglasses():
     return render_template('camglasses.html')
 def gen_frames():
     cap = cv2.VideoCapture(0)
-    # Load the sunglasses image with transparency channel
-    glasses_img = cv2.imread("deal-with-it-glasses-png-41918.png", cv2.IMREAD_UNCHANGED)
-    # Original dimensions of the sunglasses image
+    glasses_path = os.path.join("static", "images", "deal-with-it-glasses-png-41918.png")
+    glasses_img = cv2.imread(glasses_path, cv2.IMREAD_UNCHANGED)
     original_width, original_height = 370, 267
-    # Desired width for the sunglasses image
-    desired_width = 200  # Adjust as needed
-    # Calculate the new height to maintain aspect ratio
+    desired_width = 200
     aspect_ratio = original_width / original_height
     desired_height = int(desired_width / aspect_ratio)
-    # Resize the sunglasses image
     glasses_img = cv2.resize(glasses_img, (desired_width, desired_height))
     while True:
         success, frame = cap.read()
@@ -834,4 +862,4 @@ def passgen():
 
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=5000)
+    app.run(host="0.0.0.0", port=50)

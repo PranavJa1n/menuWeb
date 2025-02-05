@@ -6,26 +6,26 @@
     <title>Camera Access</title>
     <style>
         body {
-            background-color: #2C3E50; /* Dark theme background */
-            color: #ECF0F1; /* Light text color for contrast */
+            background-color: #2b2b2b;
+            color: #ECF0F1;
             font-family: Arial, sans-serif;
             text-align: center;
             padding: 20px;
         }
         video {
-            border: 2px solid #F1C40F; /* Highlight border */
+            border: 2px solid #f39c12; /* Highlight border */
             border-radius: 10px;
         }
         #canvas {
             display: none;
         }
         #recordedVideo {
-            display: none;
-            border: 2px solid #F1C40F; /* Highlight border */
+            display: none; 
+            border: 2px solid #f39c12; /* Highlight border */
             border-radius: 10px;
         }
         button {
-            background-color: #34495E; /* Button background */
+            background-color: #f39c12; /* Button background */
             color: #ECF0F1; /* Button text color */
             border: none;
             border-radius: 5px;
@@ -39,7 +39,7 @@
             cursor: not-allowed;
         }
         button:hover {
-            background-color: #1ABC9C; /* Button hover effect */
+            background-color: #e67e22; /* Button hover effect */
         }
         .container {
             display: flex;
@@ -48,9 +48,28 @@
             flex-direction: column;
             margin-top: 20px;
         }
+        .back-button {
+            position: absolute;
+            top: 25px;
+            left: 25px;
+            background: none;
+            border: none;
+            color: #ffffff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .back-button i {
+            margin-right: 10px;
+        }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
+    <a href="/projects" class="back-button">
+        <i class="fas fa-arrow-left"></i>
+    </a>
     <h1>Camera Access</h1>
     <div class="container">
         <video id="video" width="640" height="480" autoplay></video>
@@ -65,7 +84,7 @@
     <script>
         const video = document.getElementById('video');
         const canvas = document.getElementById('canvas');
-        const context = canvas.getContext('2d');
+        const context = canvas.getContext('2d'); 
         const recordedVideo = document.getElementById('recordedVideo');
         const startRecordingButton = document.getElementById('startRecording');
         const stopRecordingButton = document.getElementById('stopRecording');

@@ -5,35 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pranav Jain - My Skills</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
     <style>
-        .skill-header {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            margin: 20px;
-        }
-
-        .skill-header a {
-            text-decoration: none;
-            color: inherit;
-            font-size: 1.5rem;
-            position: absolute;
-            left: 0;
-        }
-
-        .skill-header h2 {
-            margin: 0;
-            font-size: 2rem;
-        }
-
-        .skill-header a i {
-            margin-right: 10px;
-        }
-
         h2 {
-            font-size: 48px;
+            font-size: 40px;
             margin-bottom: 20px;
             color: #f39c12;
         }
@@ -138,16 +113,36 @@
               transform: translateX(-350px);
             }
         }
+        .back-button {
+            position: absolute;
+            top: 25px;
+            left: 25px;
+            z-index: 999;
+            background: none;
+            border: none;
+            color: #ffffff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .back-button i {
+            margin-right: 10px;
+            z-index: 999;
+        }
+        .skill-container {
+    position: relative;
+    margin-top: 50px;  /* Adjust as needed to provide space for the back button */
+}
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
+  <a href="/" class="back-button">
+    <i class="fas fa-arrow-left"></i>
+</a>
     <div id="skill" class="skill-container">
-        <div class="skill-header">
-            <a href="index.html" id="backToHome">
-                <i class="fas fa-arrow-left"></i>
-            </a>
-            <h2>My Skills</h2>
-        </div>
+      <h2>My Skills</h2>
         <center>
         <div class="loader">
             <div class="truckWrapper">

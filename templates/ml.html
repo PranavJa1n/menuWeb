@@ -7,23 +7,23 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #2C3E50; /* Dark background color */
-            color: #ECF0F1; /* Light text color */
+            background-color: #2b2b2b;
+            color: #ECF0F1;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin: 0;
+            margin: 0; 
         }
         .container {
             text-align: center;
         }
         h1 {
-            color: #F1C40F; /* Highlight color */
+            color: #f39c12; /* Highlight color */
             margin-bottom: 20px;
         }
         form {
-            background-color: #34495E; /* Slightly lighter dark background */
+            background-color: #3b3b3b; /* Slightly lighter dark background */
             border-radius: 8px;
             padding: 20px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -37,50 +37,73 @@
             margin-bottom: 8px;
             font-weight: bold;
         }
-        input[type="file"],
-        input[type="text"],
-        input[type="submit"] {
-            width: calc(100% - 22px);
+        .input-group {
+            width: 100%;
+        }
+
+        .input-group input {
+            width: 100%;
             padding: 10px;
             margin-bottom: 12px;
-            border: 1px solid #BDC3C7;
+            border: 2px solid #f39c12;
             border-radius: 4px;
+            background-color: #2b2b2b;
+            color: #ECF0F1;
+            box-sizing: border-box;
         }
-        input[type="file"] {
-            background-color: #ECF0F1;
-            color: #2C3E50;
-        }
-        input[type="text"] {
-            background-color: #BDC3C7;
-            color: #2C3E50;
-        }
-        input[type="submit"] {
-            background-color: #F1C40F; /* Highlight color for button */
-            color: #2C3E50;
+
+        .input-group input[type="submit"] {
+            background-color: #f39c12; 
+            color: #ECF0F1;
             border: none;
             cursor: pointer;
             font-weight: bold;
         }
-        input[type="submit"]:hover {
-            background-color: #F39C12; /* Slightly darker highlight color on hover */
+
+        .input-group input[type="submit"]:hover {
+            background-color: #e67e22;
         }
         .accuracy {
             margin-top: 20px;
-            color: #F1C40F;
+        }
+        .back-button {
+            position: absolute;
+            top: 25px;
+            left: 25px;
+            background: none;
+            border: none;
+            color: #ffffff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .back-button i {
+            margin-right: 10px;
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
+    <a href="/projects" class="back-button">
+        <i class="fas fa-arrow-left"></i>
+    </a>
     <div class="container">
         <h1>Upload Your CSV Dataset</h1>
         <form action="/ml" method="post" enctype="multipart/form-data">
-            <label for="file">CSV File:</label>
-            <input type="file" id="file" name="file" accept=".csv" required><br>
-            
-            <label for="target">Target Column:</label>
-            <input type="text" id="target" name="target" required><br>
-            
-            <input type="submit" value="Upload and Process">
+            <div class="input-group">
+                <label for="file">CSV File:</label>
+                <input type="file" id="file" name="file" accept=".csv" required>
+            </div>
+        
+            <div class="input-group">
+                <label for="target">Target Column:</label>
+                <input type="text" id="target" name="target" required>
+            </div>
+        
+            <div class="input-group">
+                <input type="submit" value="Upload and Process">
+            </div>
         </form>
         {% if accuracy %}
         <div class="accuracy">

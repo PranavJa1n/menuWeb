@@ -10,35 +10,35 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #2C3E50;
+            background-color: #2b2b2b;
             margin: 0;
             color: #ECF0F1;
             font-family: Arial, sans-serif;
-        }
+        } 
         .container {
             text-align: center;
-            background-color: #34495E;
+            background-color: #3b3b3b;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
         #video {
-            border: 2px solid #ECF0F1;
+            border: 2px solid #f39c12;
             border-radius: 10px;
         }
         #canvas {
             display: none;
         }
         #photo {
-            border: 2px solid #ECF0F1;
+            border: 2px solid #f39c12;
             border-radius: 10px;
             margin-top: 10px;
             max-width: 100%;
         }
         button {
-            background-color: #F1C40F;
+            background-color: #f39c12;
             border: none;
-            color: #2C3E50;
+            color: #ECF0F1;
             padding: 10px 20px;
             font-size: 16px;
             border-radius: 5px;
@@ -47,21 +47,41 @@
             transition: background-color 0.3s;
         }
         button:hover {
-            background-color: #F39C12;
+            background-color: #e67e22;
         }
         #download {
             display: block;
             margin-top: 10px;
             text-decoration: none;
-            color: #F1C40F;
+            color: #f39c12;
             font-size: 16px;
         }
         #download:hover {
-            color: #F39C12;
+            color: #e67e22;
+        }
+        .back-button {
+            position: absolute;
+            top: 25px;
+            left: 25px;
+            background: none;
+            border: none;
+            color: #ffffff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .back-button i {
+            margin-right: 10px;
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
+    <a href="/projects" class="back-button">
+        <i class="fas fa-arrow-left"></i>
+    </a>
+
     <div class="container">
         <h1>Capture Photo</h1>
         <video id="video" width="640" height="480" autoplay></video>
@@ -98,6 +118,6 @@
                 downloadLink.href = dataURL; // Update download link with captured photo data
             });
         });
-    </script>
+    </script> 
 </body>
 </html>

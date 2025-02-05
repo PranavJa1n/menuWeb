@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Schedule Email</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #2C3E50;
-            color: #ECF0F1;
+            background-color: #2b2b2b;
+            color: #f0f0f0;
             margin: 0;
             padding: 0;
             display: flex;
@@ -18,13 +18,13 @@
         }
 
         h1 {
-            color: #F1C40F;
+            color: #f39c12;
             text-align: center;
             margin-bottom: 20px;
         }
 
         .container {
-            background-color: #34495E;
+            background-color: #3b3b3b;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
@@ -53,8 +53,10 @@
             margin-bottom: 15px;
             border: none;
             border-radius: 5px;
-            background-color: #ECF0F1;
-            color: #2C3E50;
+            border: 2px solid #f39c12;
+            background-color: #2b2b2b;
+            color: #f0f0f0;
+            
             font-size: 16px;
             box-sizing: border-box; /* Added to ensure equal spacing on both sides */
         }
@@ -65,8 +67,8 @@
         }
 
         input[type="submit"] {
-            background-color: #F1C40F;
-            color: #2C3E50;
+            background-color: #f39c12;
+            color: #f0f0f0;
             padding: 10px 15px;
             border: none;
             border-radius: 5px;
@@ -77,7 +79,7 @@
         }
 
         input[type="submit"]:hover {
-            background-color: #D4AC0D;
+            background-color: #e67e22;
         }
 
         input[type="submit"]:focus {
@@ -96,20 +98,39 @@
         .success {
             color: #27AE60;
         }
+        .back-button {
+            position: absolute;
+            top: 25px;
+            left: 25px;
+            background: none;
+            border: none;
+            color: #ffffff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .back-button i {
+            margin-right: 10px;
+        }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
+    <a href="/projects" class="back-button">
+        <i class="fas fa-arrow-left"></i>
+    </a>
     <div class="container">
         <form action="/schedule_email" method="post">
             <h1>Schedule an Email</h1>
             <label for="sender_email">Your Email:</label>
-            <input type="email" id="sender_email" name="sender_email" required>
+            <input type="email" id="sender_email" name="sender_email" placeholder="Enter your email" required>
             
             <label for="sender_password">Your Password:</label>
-            <input type="password" id="sender_password" name="sender_password" required>
+            <input type="password" id="sender_password" name="sender_password" placeholder="Enter your password" required>
             
             <label for="recipient_email">Recipient's Email:</label>
-            <input type="email" id="recipient_email" name="recipient_email" required>
+            <input type="email" id="recipient_email" name="recipient_email" placeholder="Enter reciever's emial" required>
             
             <label for="message">Message:</label>
             <textarea id="message" name="message" required></textarea>

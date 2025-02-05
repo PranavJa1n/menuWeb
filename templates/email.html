@@ -7,19 +7,19 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #2C3E50;
+            background-color: #2b2b2b; 
             color: #ECF0F1;
             margin: 0;
             padding: 20px;
         }
         h1 {
-            color: #F1C40F;
+            color: #f39c12;
             text-align: center;
         }
         form {
             max-width: 600px;
             margin: 50px auto;
-            background-color: #34495E;
+            background-color: #3b3b3b;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -33,16 +33,16 @@
             width: 100%;
             padding: 10px;
             margin: 10px 0;
-            border: 1px solid #34495E;
+            border: 2px solid #f39c12;
             border-radius: 4px;
-            background-color: #ECF0F1;
-            color: #2C3E50;
+            background-color: #2b2b2b;
+            color: #ECF0F1;
             font-size: 16px;
             box-sizing: border-box; /* Added to ensure equal spacing on both sides */
         }
         button {
-            background-color: #F1C40F;
-            color: #2C3E50;
+            background-color: #f39c12;
+            color: #ECF0F1;
             padding: 10px 20px;
             border: none;
             border-radius: 4px;
@@ -52,7 +52,7 @@
             margin: 20px auto;
         }
         button:hover {
-            background-color: #d4ac0d;
+            background-color: #e67e22;
         }
         .message {
             color:#2ECC71;
@@ -60,9 +60,28 @@
             font-size: 18px;
             margin-top: 20px;
         }
+        .back-button {
+            position: absolute;
+            top: 25px;
+            left: 25px;
+            background: none;
+            border: none;
+            color: #ffffff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .back-button i {
+            margin-right: 10px;
+        }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
+    <a href="/projects" class="back-button">
+        <i class="fas fa-arrow-left"></i>
+    </a>
     <h1>Send Email</h1>
     <form action="{{ url_for('send_email') }}" method="POST">
         <label for="sender_email">Sender Email:</label><br>
