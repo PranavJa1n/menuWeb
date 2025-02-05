@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect, url_for, render_template_string, render_template, Response
+from flask import Flask, request, redirect, url_for, render_template_string, render_template, Response ,session
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
@@ -22,11 +22,15 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
 import boto3
-import os
 import random
 import string
+from google import genai
+from google.genai import types
+from io import BytesIO
+from PIL import Image
 
 app = Flask(__name__)
+app.secret_key = "secret"
 
 # @app.route('/sendemails', methods=['GET', 'POST'])
 # def send_emails():
@@ -57,6 +61,38 @@ app = Flask(__name__)
 #         else:
 #             success_message = "Emails sent successfully!"
 #     return render_template('bulk_email.html', success_message=success_message, error_message=error_message)
+
+@app.route("/")
+def home():
+    return render_template("index.html")
+
+@app.route("/projects")
+def projects():
+    return render_template("myProjects.html")
+
+@app.route("/skill")
+def about():
+    return render_template("mySkills.html")
+
+@app.route("/cf")
+def cf():
+    return render_template("camfilter.html")
+
+@app.route("/cTTS")
+def cTTS():
+    return render_template("convertTextToSpeech.html")
+
+@app.route("/jsTTS")
+def jsTTS():
+    return render_template("JStts.html")
+
+@app.route("/jv")
+def jv():
+    return render_template("jsvid.html")
+
+@app.route("/jsp")
+def jsp():
+    return render_template("photoJS.html")
 
 @app.route('/sendemails', methods=['GET', 'POST'])
 def send_emails():
@@ -149,7 +185,7 @@ def geo():
                 error = "Location not found"
     return render_template('geo.html', latitude=latitude, longitude=longitude, error=error)
         
-@app.route("/gsearch", methods=["POST"])
+@app.route("/gsearch", methods=["GET","POST"])
 def gsearch():
     query = request.form.get("query")
     r = []
@@ -299,16 +335,12 @@ def camglasses():
     return render_template('camglasses.html')
 def gen_frames():
     cap = cv2.VideoCapture(0)
-    # Load the sunglasses image with transparency channel
-    glasses_img = cv2.imread("deal-with-it-glasses-png-41918.png", cv2.IMREAD_UNCHANGED)
-    # Original dimensions of the sunglasses image
+    glasses_path = os.path.join("static", "images", "deal-with-it-glasses-png-41918.png")
+    glasses_img = cv2.imread(glasses_path, cv2.IMREAD_UNCHANGED)
     original_width, original_height = 370, 267
-    # Desired width for the sunglasses image
-    desired_width = 200  # Adjust as needed
-    # Calculate the new height to maintain aspect ratio
+    desired_width = 200
     aspect_ratio = original_width / original_height
     desired_height = int(desired_width / aspect_ratio)
-    # Resize the sunglasses image
     glasses_img = cv2.resize(glasses_img, (desired_width, desired_height))
     while True:
         success, frame = cap.read()
@@ -831,6 +863,311 @@ def passgen():
         for i in range(passlength):
             generated_pass += random.choice(characters)
     return render_template('passgen.html', password=generated_pass)
+
+
+
+
+# def test():
+#     if request.method == "POST":
+#         que = request.form.get("query")
+#         apik = request.form.get("apik")
+#         response = generate(que, apik)
+#         return render_template("test.html", response=response)
+#     return render_template("test.html", response="")
+
+# def generate(que, apik):
+#     try:
+#         client = genai.Client(api_key=apik)
+
+#         model = "gemini-2.5-flash-preview-04-17"
+#         contents = [
+#             types.Content(
+#                 role="user",
+#                 parts=[
+#                     types.Part.from_text(
+#                         text='act as a normal chatbot and while talking use emojis and never use "*"'
+#                     ),
+#                 ],
+#             ),
+#             types.Content(
+#                 role="model",
+#                 parts=[
+#                     types.Part.from_text(
+#                         text="""The user wants me to act as a normal chatbot.
+# I need to follow these specific constraints:
+# 1. Act like a normal chatbot.
+# 2. Use emojis in my responses.
+# 3. Never use the asterisk character (`*`).
+
+# Okay, I can do that. I will respond in a friendly, helpful manner, incorporate relevant emojis, and avoid using asterisks for emphasis or bullet points."""
+#                     ),
+#                     types.Part.from_text(
+#                         text="""Hey there! 👋 How can I help you today? I'm here and ready to chat or assist you with whatever you need. 😊 Just ask away! ✨"""
+#                     ),
+#                 ],
+#             ),
+#             types.Content(
+#                 role="user",
+#                 parts=[
+#                     types.Part.from_text(text=que),
+#                 ],
+#             ),
+#         ]
+
+#         config = types.GenerateContentConfig(response_mime_type="text/plain")
+
+#         response = ""
+#         for chunk in client.models.generate_content_stream(
+#             model=model,
+#             contents=contents,
+#             config=config,
+#         ):
+#             response += chunk.text
+#         return response
+
+#     except Exception as e:
+#         print("Error:", e)
+#         return "❌ Invalid API Key or request failed."
+
+
+@app.route("/chatBot", methods=["GET", "POST"])
+def chatBot():
+    if request.method == "POST":
+        que = request.form.get("query")
+        apik = request.form.get("apik")
+
+        # Load conversation history from session if exists
+        if "conversation" not in session:
+            session["conversation"] = [
+                {
+                    "role": "user",
+                    "text": "act as a normal chatbot and while talking use emojis and never use \"*\""
+                },
+                {
+                    "role": "model",
+                    "text": """The user wants me to act as a normal chatbot.
+I need to follow these specific constraints:
+1.  Act like a normal chatbot.
+2.  Use emojis in my responses.
+3.  Never use the asterisk character (`*`).
+
+Okay, I can do that. I will respond in a friendly, helpful manner, incorporate relevant emojis, and avoid using asterisks for emphasis or bullet points.
+
+Hey there! 👋 How can I help you today? I'm here and ready to chat or assist you with whatever you need. 😊 Just ask away! ✨"""
+                }
+            ]
+
+        # Append user's new message
+        session["conversation"].append({
+            "role": "user",
+            "text": que
+        })
+
+        # Convert to Gemini content format
+        conversation = [
+            types.Content(role=msg["role"], parts=[types.Part(text = msg["text"])])
+            for msg in session["conversation"]
+        ]
+
+        # Generate response
+        response = generate(conversation, apik)
+
+        # Append model's response
+        session["conversation"].append({
+            "role": "model",
+            "text": response
+        })
+
+        # Save back to session
+        session.modified = True
+
+        return render_template("chatBot.html", response=response)
+
+    # On GET, clear conversation so it resets
+    session.pop("conversation", None)
+    return render_template("chatBot.html")
+
+
+
+# conversation_histories = {}
+# @app.route("/chatBot", methods=["GET", "POST"])
+# def chatBot():
+#     if request.method == "POST":
+#         que = request.form.get("query")
+#         apik = request.form.get("apik")
+
+#         user_id = hash(apik)
+
+#         if user_id not in conversation_histories:
+#             conversation_histories[user_id] = [
+#                 types.Content(
+#                     role="user",
+#                     parts=[
+#                         types.Part.from_text(text="""act as a normal chatbot and while talking use emojis and never use \"*\""""),
+#                     ],
+#                 ),
+#                 types.Content(
+#                     role="model",
+#                     parts=[
+#                         types.Part.from_text(text="""The user wants me to act as a normal chatbot.
+#     I need to follow these specific constraints:
+#     1.  Act like a normal chatbot.
+#     2.  Use emojis in my responses.
+#     3.  Never use the asterisk character (`*`).
+
+#     Okay, I can do that. I will respond in a friendly, helpful manner, incorporate relevant emojis, and avoid using asterisks for emphasis or bullet points."""),
+#                         types.Part.from_text(text="""Hey there! 👋 How can I help you today? I'm here and ready to chat or assist you with whatever you need. 😊 Just ask away! ✨"""),
+#                     ],
+#                 )
+#             ]
+
+#         conversation_histories[user_id].append(
+#             types.Content(
+#                 role="user",
+#                 parts=[types.Part.from_text(text=que)],
+#             )
+#         )
+
+#         response = generate(conversation_histories[user_id], apik)
+
+#         conversation_histories[user_id].append(
+#             types.Content(
+#                 role="model",
+#                 parts=[types.Part.from_text(text=response)],
+#             )
+#         )
+
+#         return render_template("chatBot.html", response=response)
+#     return render_template("chatBot.html")
+
+
+def generate(conversation, apik):
+    try:
+        client = genai.Client(api_key=apik)
+
+        model = "gemini-2.5-flash-preview-04-17"
+        generate_content_config = types.GenerateContentConfig(
+            response_mime_type="text/plain",
+        )
+
+        response = ""
+        for chunk in client.models.generate_content_stream(
+            model=model,
+            contents=conversation,
+            config=generate_content_config,
+        ):
+            response += chunk.text
+        return response
+
+    except:
+        return "Invalid API Key or Error occurred"
+
+
+
+@app.route("/audioAnalyzer", methods=["GET", "POST"])
+def audioAnalyzer():
+    result = None
+    if request.method == "POST":
+        apik = request.form.get("apik")
+        file = request.files.get("audio")
+        pro = request.form.get("pro")
+
+        if not apik or not file:
+            result = "Please provide both API key and audio file."
+        else:
+            try:
+                temp_path = os.path.join("temp_audio.mp3")
+                file.save(temp_path)
+
+                client = genai.Client(api_key= apik)
+                myfile = client.files.upload(file= temp_path)
+
+                response = client.models.generate_content(
+                    model="gemini-2.0-flash", contents=["Describe this audio clip", myfile]
+                )
+
+                result = response.text
+                os.remove(temp_path)
+
+            except Exception as e:
+                result = f"Error occurred: {str(e)}"
+
+    return render_template("audioA.html", response=result)
+
+
+@app.route("/imageA", methods=["GET", "POST"])
+def imageAnalyzer():
+    result = None
+    if request.method == "POST":
+        apik = request.form.get("apik")
+        file = request.files.get("image")
+        pro = request.form.get("pro")
+
+        if not apik or not file:
+            result = "Please provide both API key and image file."
+        else:
+            try:
+                temp_path = os.path.join("temp_image.jpg")
+                file.save(temp_path)
+
+                client = genai.Client(api_key= apik)
+                myfile = client.files.upload(file= temp_path)
+
+                response = client.models.generate_content(
+                    model="gemini-2.0-flash", contents=[myfile, "Explain the image and never use *"],
+                )
+
+                result = response.text
+                os.remove(temp_path)
+
+            except Exception as e:
+                result = f"Error occurred: {str(e)}"
+
+    return render_template("imageA.html", response=result)
+
+
+
+
+@app.route('/genImg', methods=['GET', 'POST'])
+def genImg():
+    image_generated = False
+    timestamp = str(int(time.time()))
+
+    if request.method == 'POST':
+        apik = request.form.get('apik')
+        prompt = request.form.get('pro')
+
+        if not apik or not prompt:
+            return render_template('genImg.html', error="API key and prompt are required.", image_generated=False, timestamp=timestamp)
+
+        if os.path.exists('static/images/genImg.png'):
+            os.remove('static/images/genImg.png')
+
+        client = genai.Client(api_key=apik)
+
+        response = client.models.generate_content(
+            model="gemini-2.0-flash-exp-image-generation",
+            contents=prompt,
+            config=types.GenerateContentConfig(
+                response_modalities=['TEXT', 'IMAGE']
+            )
+        )
+
+        for part in response.candidates[0].content.parts:
+            if part.inline_data is not None:
+                image = Image.open(BytesIO(part.inline_data.data))
+                image.save('static/images/genImg.png')
+                image_generated = True
+
+        return render_template('genImg.html', image_generated=image_generated, timestamp=str(int(time.time())))
+
+    return render_template('genImg.html', image_generated=False, timestamp=timestamp)
+
+@app.route('/delete_test_image', methods=['POST'])
+def delete_test_image():
+    if os.path.exists('static/images/genImg.png'):
+        os.remove('static/images/genImg.png')
+    return '', 204
 
 
 if __name__ == '__main__':

@@ -4,21 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Camera Glasses</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
     <style>
         body {
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin: 0;
-            background-color: #2C3E50;
         }
         img {
-            border: 2px solid #F1C40F;
+            border: 2px solid #f39c12;
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
+    <a href="/projects" class="back-button">
+        <i class="fas fa-arrow-left"></i>
+    </a>
     <img src="{{ url_for('video_feed') }}" width="640" height="480">
 </body>
 </html>

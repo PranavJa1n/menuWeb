@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Image Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            color: #ECF0F1;
+            padding: 20px;
+        }
+        h2 {
+            color: #f39c12;
+            text-align: center;
+        }
+        form {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #3b3b3b;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+        input[type="text"],
+        input[type="file"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 2px solid #f39c12;
+            border-radius: 4px;
+            background-color: #2b2b2b;
+            color: #ECF0F1;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #f39c12;
+            color: #ECF0F1;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            display: block;
+            margin: 20px auto;
+        }
+        button:hover {
+            background-color: #e67e22;
+        }
+        .response {
+            margin-top: 20px;
+            max-width: 700px;
+            background-color: #3b3b3b;
+            padding: 20px;
+            border-radius: 8px;
+            border: 2px solid #f39c12;
+            color: #ECF0F1;
+            font-size: 16px;
+            margin-left: auto;
+            margin-right: auto;
+            white-space: pre-wrap;
+        }
+        #response-data {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <a href="/projects" class="back-button" id="back-button">
+        <i class="fas fa-arrow-left"></i>
+    </a>
+
+    <h2>Image Generator</h2>
+
+    <div id="content">
+        <form method="post">
+            <label for="apik">Gemini API Key:</label>
+            <input type="password" id="apik" name="apik" placeholder="Enter your Gemini API Key 🔑" value="{{ apik }}" required />
+
+            <label for="pro">Prompt:</label>
+            <input type="text" id="pro" name="pro" placeholder="Enter your prompt" value="{{ pro }}" required>
+
+            <button type="submit">Generate Image</button>
+        </form>
+
+        {% if image_generated %}
+            <h2>Generated Image:</h2>
+            <img src="/static/images/genImg.png?{{ timestamp }}" alt="Generated Image">
+        {% endif %}
+
+        {% if error %}
+            <p style="color:red;">{{ error }}</p>
+        {% endif %}
+    </div>
+
+    <script>
+    function attachFormSubmit() {
+        const form = document.querySelector('form');
+        if (!form) return;
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const formData = new FormData(this);
+
+            // 🔥 First delete old image before submitting
+            fetch('/delete_test_image', { method: 'POST' })
+            .then(() => {
+                return fetch('/genImg', {
+                    method: 'POST',
+                    body: formData,
+                });
+            })
+            .then(response => response.text())
+            .then(html => {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                const newContent = doc.querySelector('#content');
+                document.getElementById('content').innerHTML = newContent.innerHTML;
+
+                // Re-fill API key and prompt
+                document.getElementById('apik').value = formData.get('apik');
+                document.getElementById('pro').value = formData.get('pro');
+
+                attachFormSubmit(); // re-attach after re-render
+                attachBackButton(); // re-attach back button
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    }
+
+    function attachBackButton() {
+        const backButton = document.getElementById('back-button');
+        if (!backButton) return;
+
+        backButton.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            // 🔥 Delete the image before redirecting
+            fetch('/delete_test_image', { method: 'POST' })
+            .then(() => {
+                // Now actually go back
+                window.location.href = this.getAttribute('href');
+            })
+            .catch(error => {
+                console.error('Error deleting image:', error);
+                window.location.href = this.getAttribute('href');
+            });
+        });
+    }
+
+    // Attach once on page load
+    attachFormSubmit();
+    attachBackButton();
+    </script>
+</body>
+</html>

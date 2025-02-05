@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pranav Jain - My Skills</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+    <style>
+        h2 {
+            font-size: 40px;
+            margin-bottom: 20px;
+            color: #f39c12;
+        }
+        .card-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            width: 100%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .card {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            padding: 1rem;
+            width: 14rem;
+            background-color: #3b3b3b;
+            border-radius: 1rem;
+        }
+
+        .image_container {
+            overflow: hidden;
+            cursor: pointer;
+            position: relative;
+            z-index: 5;
+            width: 100%;
+            height: 8rem;
+            background-color: #f39c12;
+            border-radius: 0.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image_container .image {
+            width: 80%;
+            height: 80%;
+            object-fit: contain; /* Ensures the entire image fits within the container */
+        }
+        .card-text {
+            color: white;
+            text-align: center;
+            font-size: 1rem;
+            margin-top: 10px;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+  <a href="/" class="back-button">
+    <i class="fas fa-arrow-left"></i>
+  </a>
+  <h2>My Skills</h2>
+
+
+  <div class="card-container">
+    <div class="card">
+        <div class="image_container">
+            <div class="image_container">
+                <img class="image" src="{{ url_for('static', filename='images/aws.png') }}" alt="Card Image">
+            </div>
+        </div>
+        <p class="card-text">Amazon Web Services</p>
+    </div>
+
+    <div class="card">
+        <div class="image_container">
+            <div class="image_container">
+                <img class="image" src="{{ url_for('static', filename='images/linux.png') }}" alt="Card Image">
+            </div>
+        </div>
+        <p class="card-text">Linux</p>
+    </div>
+
+    <div class="card">
+      <div class="image_container">
+          <div class="image_container">
+              <img class="image" src="{{ url_for('static', filename='images/docker.png') }}" alt="Card Image">
+          </div>
+      </div>
+      <p class="card-text">Docker</p>
+  </div>
+
+  <div class="card">
+    <div class="image_container">
+        <div class="image_container">
+            <img class="image" src="{{ url_for('static', filename='images/git.png') }}" alt="Card Image">
+        </div>
+    </div>
+    <p class="card-text">Git</p>
+</div>
+
+<div class="card">
+  <div class="image_container">
+      <div class="image_container">
+          <img class="image" src="{{ url_for('static', filename='images/mongodb.png') }}" alt="Card Image">
+      </div>
+  </div>
+  <p class="card-text">Mongodb</p>
+</div>
+<div class="card">
+  <div class="image_container">
+      <div class="image_container">
+          <img class="image" src="{{ url_for('static', filename='images/mysql.png') }}" alt="Card Image">
+      </div>
+  </div>
+  <p class="card-text">MySQL</p>
+</div>
+<div class="card">
+  <div class="image_container">
+      <div class="image_container">
+          <img class="image" src="{{ url_for('static', filename='images/python.png') }}" alt="Card Image">
+      </div>
+  </div>
+  <p class="card-text">Python</p>
+</div>
+<div class="card">
+    <div class="image_container">
+        <div class="image_container">
+            <img class="image" src="{{ url_for('static', filename='images/flask.png') }}" alt="Card Image">
+        </div>
+    </div>
+    <p class="card-text">Flask API</p>
+  </div>
+<div class="card">
+  <div class="image_container">
+      <div class="image_container">
+          <img class="image" src="{{ url_for('static', filename='images/go.png') }}" alt="Card Image">
+      </div>
+  </div>
+  <p class="card-text">Go</p>
+</div>
+<div class="card">
+  <div class="image_container">
+      <div class="image_container">
+          <img class="image" src="{{ url_for('static', filename='images/bash.png') }}" alt="Card Image">
+      </div>
+  </div>
+  <p class="card-text">Bash</p>
+</div>
+</div>
+
+
+</body>
+</html>

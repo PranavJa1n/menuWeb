@@ -1,62 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Schedule Email</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #2C3E50;
             color: #ECF0F1;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            padding: 20px;
         }
 
         h1 {
-            color: #F1C40F;
+            color: #f39c12;
             text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .container {
-            background-color: #34495E;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-            max-width: 400px;
-            width: 100%;
         }
 
         form {
-            display: flex;
-            flex-direction: column;
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #3b3b3b;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
         label {
-            font-weight: bold;
-            margin-bottom: 10px;
             display: block;
-            color: #ECF0F1;
+            margin-bottom: 8px;
+            font-size: 16px;
         }
 
-        input[type="email"],
-        input[type="password"],
-        input[type="time"],
-        textarea {
+        input, textarea {
             width: 100%;
             padding: 10px;
-            margin-bottom: 15px;
-            border: none;
-            border-radius: 5px;
-            background-color: #ECF0F1;
-            color: #2C3E50;
+            margin: 10px 0;
+            border: 2px solid #f39c12;
+            border-radius: 4px;
+            background-color: #2b2b2b;
+            color: #ECF0F1;
             font-size: 16px;
-            box-sizing: border-box; /* Added to ensure equal spacing on both sides */
+            box-sizing: border-box;
+        }
+
+        input[type="time"] {
+            color-scheme: dark; /* Ensures time input fits dark theme */
         }
 
         textarea {
@@ -64,72 +52,68 @@
             height: 100px;
         }
 
-        input[type="submit"] {
-            background-color: #F1C40F;
-            color: #2C3E50;
-            padding: 10px 15px;
+        button, input[type="submit"] {
+            background-color: #f39c12;
+            color: #ECF0F1;
+            padding: 10px 20px;
             border: none;
-            border-radius: 5px;
+            border-radius: 4px;
             cursor: pointer;
-            font-size: 18px;
-            font-weight: bold;
-            width: 100%;
+            font-size: 16px;
+            display: block;
+            margin: 20px auto;
         }
 
-        input[type="submit"]:hover {
-            background-color: #D4AC0D;
-        }
-
-        input[type="submit"]:focus {
-            outline: none;
+        button:hover, input[type="submit"]:hover {
+            background-color: #e67e22;
         }
 
         .message {
-            margin-top: 20px;
             text-align: center;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        .success {
+            color: #2ECC71;
         }
 
         .error {
             color: #E74C3C;
         }
-
-        .success {
-            color: #27AE60;
-        }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
-    <div class="container">
-        <form action="/schedule_email" method="post">
-            <h1>Schedule an Email</h1>
-            <label for="sender_email">Your Email:</label>
-            <input type="email" id="sender_email" name="sender_email" required>
-            
-            <label for="sender_password">Your Password:</label>
-            <input type="password" id="sender_password" name="sender_password" required>
-            
-            <label for="recipient_email">Recipient's Email:</label>
-            <input type="email" id="recipient_email" name="recipient_email" required>
-            
-            <label for="message">Message:</label>
-            <textarea id="message" name="message" required></textarea>
-            
-            <label for="timeinput">Time to Send (HH:MM):</label>
-            <input type="time" id="timeinput" name="timeinput" required>
-            
-            <input type="submit" value="Schedule Email">
-            
-            {% if success %}
-            <div class="message success">
-                {{ success }}
-            </div>
-            {% endif %}
-            {% if error %}
-            <div class="message error">
-                {{ error }}
-            </div>
-            {% endif %}
-        </form>
-    </div>
+    <a href="/projects" class="back-button">
+        <i class="fas fa-arrow-left"></i>
+    </a>
+
+    <h1>Schedule an Email</h1>
+    <form action="/schedule_email" method="post">
+        <label for="sender_email">Your Email:</label>
+        <input type="email" id="sender_email" name="sender_email" placeholder="Enter your email" required>
+
+        <label for="sender_password">Your Password:</label>
+        <input type="password" id="sender_password" name="sender_password" placeholder="Enter your password" required>
+
+        <label for="recipient_email">Recipient's Email:</label>
+        <input type="email" id="recipient_email" name="recipient_email" placeholder="Enter recipient's email" required>
+
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" placeholder="Enter your message" required></textarea>
+
+        <label for="timeinput">Time to Send (HH:MM):</label>
+        <input type="time" id="timeinput" name="timeinput" required>
+
+        <input type="submit" value="Schedule Email">
+
+        {% if success %}
+        <div class="message success">{{ success }}</div>
+        {% endif %}
+        {% if error %}
+        <div class="message error">{{ error }}</div>
+        {% endif %}
+    </form>
 </body>
 </html>

@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Windows Command Prompt Interface</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
     <style>
         body {
             font-family: 'Courier New', Courier, monospace;
-            background-color: #000000;
+            background-color: #2b2b2b;
             color: #00ff00;
-            margin: 0;
+            margin: 0; 
             padding: 0;
             display: flex;
             justify-content: center;
@@ -47,8 +48,12 @@
             outline: none;
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
+    <a href="/projects" class="back-button">
+        <i class="fas fa-arrow-left"></i>
+    </a>
     <div class="terminal">
         <div class="output" id="output"></div>
         <form action="/cmdcommand" method="POST">

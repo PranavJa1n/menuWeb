@@ -4,36 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Geolocation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #2C3E50;
             color: #ECF0F1;
-            margin: 0;
             padding: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: center; 
             height: 100vh;
         }
 
         h1 {
-            color: #F1C40F;
+            color: #f39c12;
             margin-bottom: 20px;
         }
-
+ 
         p {
             font-size: 18px;
             margin: 10px 0;
         }
 
         strong {
-            color: #F1C40F;
+            color: #f39c12;
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
+    <a href="/projects" class="back-button">
+        <i class="fas fa-arrow-left"></i>
+    </a>
     <h1>Your Location</h1>
     <p><strong>Latitude:</strong> {{ latitude }}</p>
     <p><strong>Longitude:</strong> {{ longitude }}</p>

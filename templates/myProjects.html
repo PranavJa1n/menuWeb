@@ -1,0 +1,3750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pranav Jain - My Skills</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+    <style>
+        h2 {
+            font-size: 40px;
+            margin-bottom: 20px;
+            color: #f39c12;
+        }
+
+        .card-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            width: 100%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .card {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            padding: 1rem;
+            width: 14rem;
+            background-color: #3b3b3b;
+            border-radius: 1rem;
+        }
+
+        .image_container {
+            overflow: hidden;
+            cursor: pointer;
+            position: relative;
+            z-index: 5;
+            width: 100%;
+            height: 8rem;
+            background-color: #f39c12;
+            border-radius: 0.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image_container .image {
+            width: 80%;
+            height: 80%;
+            object-fit: contain; /* Ensures the entire image fits within the container */
+        }
+        button {
+            position: relative;
+            padding: 12px 35px;
+            background: #fec195;
+            font-size: 17px;
+            font-weight: 500;
+            color: #181818;
+            border: 3px solid #fec195;
+            border-radius: 8px;
+            box-shadow: 0 0 0 #fec1958c;
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+        }
+        .star-1 {
+            position: absolute;
+            top: 20%;
+            left: 20%;
+            width: 25px;
+            height: auto;
+            filter: drop-shadow(0 0 0 #fffdef);
+            z-index: -5;
+            transition: all 1s cubic-bezier(0.05, 0.83, 0.43, 0.96);
+        }
+        .star-2 {
+            position: absolute;
+            top: 45%;
+            left: 45%;
+            width: 15px;
+            height: auto;
+            filter: drop-shadow(0 0 0 #fffdef);
+            z-index: -5;
+            transition: all 1s cubic-bezier(0, 0.4, 0, 1.01);
+        }
+        .star-3 {
+            position: absolute;
+            top: 40%;
+            left: 40%;
+            width: 5px;
+            height: auto;
+            filter: drop-shadow(0 0 0 #fffdef);
+            z-index: -5;
+            transition: all 1s cubic-bezier(0, 0.4, 0, 1.01);
+        }
+        
+        .star-4 {
+            position: absolute;
+            top: 20%;
+            left: 40%;
+            width: 8px;
+            height: auto;
+            filter: drop-shadow(0 0 0 #fffdef);
+            z-index: -5;
+            transition: all 0.8s cubic-bezier(0, 0.4, 0, 1.01);
+        }
+        
+        .star-5 {
+            position: absolute;
+            top: 25%;
+            left: 45%;
+            width: 15px;
+            height: auto;
+            filter: drop-shadow(0 0 0 #fffdef);
+            z-index: -5;
+            transition: all 0.6s cubic-bezier(0, 0.4, 0, 1.01);
+        }
+        
+        .star-6 {
+            position: absolute;
+            top: 5%;
+            left: 50%;
+            width: 5px;
+            height: auto;
+            filter: drop-shadow(0 0 0 #fffdef);
+            z-index: -5;
+            transition: all 0.8s ease;
+        }
+        
+        button:hover {
+            background: transparent;
+            color: #fec195;
+            box-shadow: 0 0 25px #fec1958c;
+        }
+        
+        button:hover .star-1 {
+            position: absolute;
+            top: -80%;
+            left: -30%;
+            width: 25px;
+            height: auto;
+            filter: drop-shadow(0 0 10px #fffdef);
+            z-index: 2;
+        }
+        
+        button:hover .star-2 {
+            position: absolute;
+            top: -25%;
+            left: 10%;
+            width: 15px;
+            height: auto;
+            filter: drop-shadow(0 0 10px #fffdef);
+            z-index: 2;
+        }
+        
+        button:hover .star-3 {
+            position: absolute;
+            top: 55%;
+            left: 25%;
+            width: 5px;
+            height: auto;
+            filter: drop-shadow(0 0 10px #fffdef);
+            z-index: 2;
+        }
+        
+        button:hover .star-4 {
+            position: absolute;
+            top: 30%;
+            left: 80%;
+            width: 8px;
+            height: auto;
+            filter: drop-shadow(0 0 10px #fffdef);
+            z-index: 2;
+        }
+        
+        button:hover .star-5 {
+            position: absolute;
+            top: 25%;
+            left: 115%;
+            width: 15px;
+            height: auto;
+            filter: drop-shadow(0 0 10px #fffdef);
+            z-index: 2;
+        }
+        
+        button:hover .star-6 {
+            position: absolute;
+            top: 5%;
+            left: 60%;
+            width: 5px;
+            height: auto;
+            filter: drop-shadow(0 0 10px #fffdef);
+            z-index: 2;
+        }
+        
+        .fil0 {
+            fill: #fffdef;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <a href="/" class="back-button">
+        <i class="fas fa-arrow-left"></i>
+    </a>
+            <h2>My Projects</h2>
+    <div class="card-container">
+        <div class="card">
+            <div class="image_container">
+                <img class="image" src="{{ url_for('static', filename='images/geoMarker.png') }}" alt="Card Image">
+            </div>
+            <a href="/geo">
+                <button>
+                Geo Coordinates
+                <div class="star-1">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-2">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-3">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-4">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-5">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-6">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                </button>
+            </a>
+        </div>
+        <div class="card">
+            <div class="image_container">
+                <div class="image_container">
+                    <img class="image" src="{{ url_for('static', filename='images/geoLocation.png') }}" alt="Card Image">
+                </div>
+            </div>
+            <a href="/geolocation">
+                <button>
+                    Geo location
+                <div class="star-1">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-2">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-3">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-4">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-5">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-6">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                </button>
+            </a>
+        </div>
+        <div class="card">
+            <div class="image_container">
+                <div class="image_container">
+                    <img class="image" src="{{ url_for('static', filename='images/email.png') }}" alt="Card Image">
+                </div>
+            </div>
+            <a href="/email">
+                <button>
+                Send Email
+                <div class="star-1">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-2">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-3">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-4">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-5">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-6">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                </button>
+            </a>
+        </div>
+        <div class="card">
+            <div class="image_container">
+                <div class="image_container">
+                    <img class="image" src="{{ url_for('static', filename='images/bulkEmail.png') }}" alt="Card Image">
+                </div>
+            </div>
+            <a href="/sendemails">
+                <button>
+                Send Bulk Email
+                <div class="star-1">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-2">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-3">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-4">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-5">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-6">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                </button>
+            </a>
+        </div>
+        <div class="card">
+            <div class="image_container">
+                <div class="image_container">
+                    <img class="image" src="{{ url_for('static', filename='images/sEm.png') }}" alt="Card Image">
+                </div>
+            </div>
+            <a href="/schedule_email">
+                <button>
+                Schedule Email
+                <div class="star-1">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-2">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-3">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-4">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-5">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-6">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                </button>
+            </a>
+        </div>
+        <div class="card">
+            <div class="image_container">
+                <div class="image_container">
+                    <img class="image" src="{{ url_for('static', filename='images/googleSearch.png') }}" alt="Card Image">
+                </div>
+            </div>
+            <a href="/gsearch">
+                <button>
+                    Google Search
+                    <div class="star-1">
+                        <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        xml:space="preserve"
+                        version="1.1"
+                        style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                        viewBox="0 0 784.11 815.53"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                        >
+                        <defs></defs>
+                        <g id="Layer_x0020_1">
+                            <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                            <path
+                            class="fil0"
+                            d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                            ></path>
+                        </g>
+                        </svg>
+                    </div>
+                    <div class="star-2">
+                        <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        xml:space="preserve"
+                        version="1.1"
+                        style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                        viewBox="0 0 784.11 815.53"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                        >
+                        <defs></defs>
+                        <g id="Layer_x0020_1">
+                            <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                            <path
+                            class="fil0"
+                            d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                            ></path>
+                        </g>
+                        </svg>
+                    </div>
+                    <div class="star-3">
+                        <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        xml:space="preserve"
+                        version="1.1"
+                        style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                        viewBox="0 0 784.11 815.53"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                        >
+                        <defs></defs>
+                        <g id="Layer_x0020_1">
+                            <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                            <path
+                            class="fil0"
+                            d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                            ></path>
+                        </g>
+                        </svg>
+                    </div>
+                    <div class="star-4">
+                        <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        xml:space="preserve"
+                        version="1.1"
+                        style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                        viewBox="0 0 784.11 815.53"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                        >
+                        <defs></defs>
+                        <g id="Layer_x0020_1">
+                            <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                            <path
+                            class="fil0"
+                            d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                            ></path>
+                        </g>
+                        </svg>
+                    </div>
+                    <div class="star-5">
+                        <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        xml:space="preserve"
+                        version="1.1"
+                        style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                        viewBox="0 0 784.11 815.53"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                        >
+                        <defs></defs>
+                        <g id="Layer_x0020_1">
+                            <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                            <path
+                            class="fil0"
+                            d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                            ></path>
+                        </g>
+                        </svg>
+                    </div>
+                    <div class="star-6">
+                        <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        xml:space="preserve"
+                        version="1.1"
+                        style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                        viewBox="0 0 784.11 815.53"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                        >
+                        <defs></defs>
+                        <g id="Layer_x0020_1">
+                            <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                            <path
+                            class="fil0"
+                            d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                            ></path>
+                        </g>
+                        </svg>
+                    </div>
+                </button>
+            </a>
+        </div>
+        <div class="card">
+            <div class="image_container">
+                <div class="image_container">
+                    <img class="image" src="{{ url_for('static', filename='images/sms.png') }}" alt="Card Image">
+                </div>
+            </div>
+            <a href="/sms">
+                <button>
+                    SMS
+                <div class="star-1">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-2">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-3">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-4">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-5">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-6">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                </button>
+            </a>
+        </div>
+        <div class="card">
+            <div class="image_container">
+                <div class="image_container">
+                    <img class="image" src="{{ url_for('static', filename='images/snap.png') }}" alt="Card Image">
+                </div>
+            </div>
+                <a href="/cf">
+                    <button>
+                        Filters
+                        <div class="star-1">
+                            <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            xml:space="preserve"
+                            version="1.1"
+                            style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                            viewBox="0 0 784.11 815.53"
+                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                            >
+                            <defs></defs>
+                            <g id="Layer_x0020_1">
+                                <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                                <path
+                                class="fil0"
+                                d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                                ></path>
+                            </g>
+                            </svg>
+                        </div>
+                        <div class="star-2">
+                            <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            xml:space="preserve"
+                            version="1.1"
+                            style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                            viewBox="0 0 784.11 815.53"
+                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                            >
+                            <defs></defs>
+                            <g id="Layer_x0020_1">
+                                <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                                <path
+                                class="fil0"
+                                d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                                ></path>
+                            </g>
+                            </svg>
+                        </div>
+                        <div class="star-3">
+                            <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            xml:space="preserve"
+                            version="1.1"
+                            style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                            viewBox="0 0 784.11 815.53"
+                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                            >
+                            <defs></defs>
+                            <g id="Layer_x0020_1">
+                                <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                                <path
+                                class="fil0"
+                                d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                                ></path>
+                            </g>
+                            </svg>
+                        </div>
+                        <div class="star-4">
+                            <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            xml:space="preserve"
+                            version="1.1"
+                            style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                            viewBox="0 0 784.11 815.53"
+                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                            >
+                            <defs></defs>
+                            <g id="Layer_x0020_1">
+                                <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                                <path
+                                class="fil0"
+                                d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                                ></path>
+                            </g>
+                            </svg>
+                        </div>
+                        <div class="star-5">
+                            <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            xml:space="preserve"
+                            version="1.1"
+                            style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                            viewBox="0 0 784.11 815.53"
+                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                            >
+                            <defs></defs>
+                            <g id="Layer_x0020_1">
+                                <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                                <path
+                                class="fil0"
+                                d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                                ></path>
+                            </g>
+                            </svg>
+                        </div>
+                        <div class="star-6">
+                            <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            xml:space="preserve"
+                            version="1.1"
+                            style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                            viewBox="0 0 784.11 815.53"
+                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                            >
+                            <defs></defs>
+                            <g id="Layer_x0020_1">
+                                <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                                <path
+                                class="fil0"
+                                d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                                ></path>
+                            </g>
+                            </svg>
+                        </div>
+                    </button>
+                </a>
+            </div>
+        <div class="card">
+            <div class="image_container">
+                <div class="image_container">
+                    <img class="image" src="{{ url_for('static', filename='images/camera.png') }}" alt="Card Image">
+                </div>
+            </div>
+            <a href="/camglasses">
+                <button>
+                    Open Camera with Sunglasses
+                <div class="star-1">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-2">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-3">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-4">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-5">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-6">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                </button>
+            </a>
+        </div>
+        <div class="card">
+            <div class="image_container">
+                <div class="image_container">
+                    <img class="image" src="{{ url_for('static', filename='images/docker.png') }}" alt="Card Image">
+                </div>
+            </div>
+            <a href="/docker">
+                <button>
+                Docker Managment System
+                <div class="star-1">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-2">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-3">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-4">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-5">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-6">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                </button>
+            </a>
+        </div>
+        <div class="card">
+            <div class="image_container">
+                <div class="image_container">
+                    <img class="image" src="{{ url_for('static', filename='images/s3.png') }}" alt="Card Image">
+                </div>
+            </div>
+            <a href="/s3">
+                <button>
+                    Upload on S3
+                <div class="star-1">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-2">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-3">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-4">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-5">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-6">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                </button>
+            </a>
+        </div>
+        <div class="card">
+            <div class="image_container">
+                <div class="image_container">
+                    <img class="image" src="{{ url_for('static', filename='images/video.png') }}" alt="Card Image">
+                </div>
+            </div>
+            <a href="/jv">
+                <button>
+                    Video Capture using JS
+                    <div class="star-1">
+                        <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        xml:space="preserve"
+                        version="1.1"
+                        style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                        viewBox="0 0 784.11 815.53"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                        >
+                        <defs></defs>
+                        <g id="Layer_x0020_1">
+                            <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                            <path
+                            class="fil0"
+                            d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                            ></path>
+                        </g>
+                        </svg>
+                    </div>
+                    <div class="star-2">
+                        <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        xml:space="preserve"
+                        version="1.1"
+                        style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                        viewBox="0 0 784.11 815.53"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                        >
+                        <defs></defs>
+                        <g id="Layer_x0020_1">
+                            <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                            <path
+                            class="fil0"
+                            d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                            ></path>
+                        </g>
+                        </svg>
+                    </div>
+                    <div class="star-3">
+                        <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        xml:space="preserve"
+                        version="1.1"
+                        style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                        viewBox="0 0 784.11 815.53"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                        >
+                        <defs></defs>
+                        <g id="Layer_x0020_1">
+                            <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                            <path
+                            class="fil0"
+                            d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                            ></path>
+                        </g>
+                        </svg>
+                    </div>
+                    <div class="star-4">
+                        <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        xml:space="preserve"
+                        version="1.1"
+                        style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                        viewBox="0 0 784.11 815.53"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                        >
+                        <defs></defs>
+                        <g id="Layer_x0020_1">
+                            <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                            <path
+                            class="fil0"
+                            d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                            ></path>
+                        </g>
+                        </svg>
+                    </div>
+                    <div class="star-5">
+                        <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        xml:space="preserve"
+                        version="1.1"
+                        style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                        viewBox="0 0 784.11 815.53"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                        >
+                        <defs></defs>
+                        <g id="Layer_x0020_1">
+                            <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                            <path
+                            class="fil0"
+                            d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                            ></path>
+                        </g>
+                        </svg>
+                    </div>
+                    <div class="star-6">
+                        <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        xml:space="preserve"
+                        version="1.1"
+                        style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                        viewBox="0 0 784.11 815.53"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                        >
+                        <defs></defs>
+                        <g id="Layer_x0020_1">
+                            <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                            <path
+                            class="fil0"
+                            d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                            ></path>
+                        </g>
+                        </svg>
+                    </div>
+                </button>
+            </a>
+        </div>
+        <div class="card">
+            <div class="image_container">
+                <div class="image_container">
+                    <img class="image" src="{{ url_for('static', filename='images/stt.png') }}" alt="Card Image">
+                </div>
+            </div>
+            <a href="/jsTTS">
+                <button>
+                    Speech to Text using JS
+                    <div class="star-1">
+                        <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        xml:space="preserve"
+                        version="1.1"
+                        style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                        viewBox="0 0 784.11 815.53"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                        >
+                        <defs></defs>
+                        <g id="Layer_x0020_1">
+                            <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                            <path
+                            class="fil0"
+                            d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                            ></path>
+                        </g>
+                        </svg>
+                    </div>
+                    <div class="star-2">
+                        <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        xml:space="preserve"
+                        version="1.1"
+                        style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                        viewBox="0 0 784.11 815.53"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                        >
+                        <defs></defs>
+                        <g id="Layer_x0020_1">
+                            <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                            <path
+                            class="fil0"
+                            d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                            ></path>
+                        </g>
+                        </svg>
+                    </div>
+                    <div class="star-3">
+                        <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        xml:space="preserve"
+                        version="1.1"
+                        style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                        viewBox="0 0 784.11 815.53"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                        >
+                        <defs></defs>
+                        <g id="Layer_x0020_1">
+                            <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                            <path
+                            class="fil0"
+                            d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                            ></path>
+                        </g>
+                        </svg>
+                    </div>
+                    <div class="star-4">
+                        <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        xml:space="preserve"
+                        version="1.1"
+                        style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                        viewBox="0 0 784.11 815.53"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                        >
+                        <defs></defs>
+                        <g id="Layer_x0020_1">
+                            <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                            <path
+                            class="fil0"
+                            d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                            ></path>
+                        </g>
+                        </svg>
+                    </div>
+                    <div class="star-5">
+                        <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        xml:space="preserve"
+                        version="1.1"
+                        style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                        viewBox="0 0 784.11 815.53"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                        >
+                        <defs></defs>
+                        <g id="Layer_x0020_1">
+                            <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                            <path
+                            class="fil0"
+                            d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                            ></path>
+                        </g>
+                        </svg>
+                    </div>
+                    <div class="star-6">
+                        <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        xml:space="preserve"
+                        version="1.1"
+                        style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                        viewBox="0 0 784.11 815.53"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                        >
+                        <defs></defs>
+                        <g id="Layer_x0020_1">
+                            <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                            <path
+                            class="fil0"
+                            d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                            ></path>
+                        </g>
+                        </svg>
+                    </div>
+                </button>
+            </a>
+        </div>
+        <div class="card">
+            <div class="image_container">
+                <svg class="image" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path
+                        d="M20 5H4V19L13.2923 9.70649C13.6828 9.31595 14.3159 9.31591 14.7065 9.70641L20 15.0104V5ZM2 3.9934C2 3.44476 2.45531 3 2.9918 3H21.0082C21.556 3 22 3.44495 22 3.9934V20.0066C22 20.5552 21.5447 21 21.0082 21H2.9918C2.44405 21 2 20.5551 2 20.0066V3.9934ZM8 11C6.89543 11 6 10.1046 6 9C6 7.89543 6.89543 7 8 7C9.10457 7 10 7.89543 10 9C10 10.1046 9.10457 11 8 11Z"
+                    ></path>
+                </svg>
+            </div>
+            <a href="/jsp">
+                <button>
+                    Photo Capture using JS
+                    <div class="star-1">
+                        <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        xml:space="preserve"
+                        version="1.1"
+                        style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                        viewBox="0 0 784.11 815.53"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                        >
+                        <defs></defs>
+                        <g id="Layer_x0020_1">
+                            <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                            <path
+                            class="fil0"
+                            d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                            ></path>
+                        </g>
+                        </svg>
+                    </div>
+                    <div class="star-2">
+                        <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        xml:space="preserve"
+                        version="1.1"
+                        style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                        viewBox="0 0 784.11 815.53"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                        >
+                        <defs></defs>
+                        <g id="Layer_x0020_1">
+                            <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                            <path
+                            class="fil0"
+                            d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                            ></path>
+                        </g>
+                        </svg>
+                    </div>
+                    <div class="star-3">
+                        <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        xml:space="preserve"
+                        version="1.1"
+                        style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                        viewBox="0 0 784.11 815.53"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                        >
+                        <defs></defs>
+                        <g id="Layer_x0020_1">
+                            <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                            <path
+                            class="fil0"
+                            d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                            ></path>
+                        </g>
+                        </svg>
+                    </div>
+                    <div class="star-4">
+                        <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        xml:space="preserve"
+                        version="1.1"
+                        style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                        viewBox="0 0 784.11 815.53"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                        >
+                        <defs></defs>
+                        <g id="Layer_x0020_1">
+                            <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                            <path
+                            class="fil0"
+                            d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                            ></path>
+                        </g>
+                        </svg>
+                    </div>
+                    <div class="star-5">
+                        <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        xml:space="preserve"
+                        version="1.1"
+                        style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                        viewBox="0 0 784.11 815.53"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                        >
+                        <defs></defs>
+                        <g id="Layer_x0020_1">
+                            <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                            <path
+                            class="fil0"
+                            d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                            ></path>
+                        </g>
+                        </svg>
+                    </div>
+                    <div class="star-6">
+                        <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        xml:space="preserve"
+                        version="1.1"
+                        style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                        viewBox="0 0 784.11 815.53"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                        >
+                        <defs></defs>
+                        <g id="Layer_x0020_1">
+                            <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                            <path
+                            class="fil0"
+                            d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                            ></path>
+                        </g>
+                        </svg>
+                    </div>
+                </button>
+            </a>
+        </div>
+        <div class="card">
+            <div class="image_container">
+                <div class="image_container">
+                    <img class="image" src="{{ url_for('static', filename='images/ml.png') }}" alt="Card Image">
+                </div>
+            </div>
+            <a href="/ml">
+                <button>
+                    Check ML Accuracy
+                <div class="star-1">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-2">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-3">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-4">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-5">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-6">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                </button>
+            </a>
+        </div>
+        <div class="card">
+            <div class="image_container">
+                <div class="image_container">
+                    <img class="image" src="{{ url_for('static', filename='images/ec2.png') }}" alt="Card Image">
+                </div>
+            </div>
+            <a href="/create_instance">
+                <button>
+                    Launch EC2 Instance
+                <div class="star-1">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-2">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-3">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-4">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-5">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-6">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                </button>
+            </a>
+        </div>
+        <div class="card">
+            <div class="image_container">
+                <div class="image_container">
+                    <img class="image" src="{{ url_for('static', filename='images/linuxTerminal.png') }}" alt="Card Image">
+                </div>
+            </div>
+            <a href="/terminal">
+                <button>
+                    Linux Terminal
+                <div class="star-1">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-2">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-3">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-4">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-5">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-6">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                </button>
+            </a>
+        </div>
+        <div class="card">
+            <div class="image_container">
+                <div class="image_container">
+                    <img class="image" src="{{ url_for('static', filename='images/cmd.png') }}" alt="Card Image">
+                </div>
+            </div>
+            <a href="/cmd">
+                <button>
+                    Windows CMD
+                <div class="star-1">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-2">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-3">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-4">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-5">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-6">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                </button>
+            </a>
+        </div>
+        <div class="card">
+            <div class="image_container">
+                <div class="image_container">
+                    <img class="image" src="{{ url_for('static', filename='images/bmi.png') }}" alt="Card Image">
+                </div>
+            </div>
+            <a href="/bmi">
+                <button>
+                    BMI Calculator
+                <div class="star-1">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-2">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-3">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-4">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-5">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-6">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                </button>
+            </a>
+        </div>
+
+        <div class="card">
+            <div class="image_container">
+                <div class="image_container">
+                    <img class="image" src="{{ url_for('static', filename='images/gam.png') }}" alt="Card Image">
+                </div>
+            </div>
+            <a href="/gambler">
+                <button>
+                    Gambler
+                <div class="star-1">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-2">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-3">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-4">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-5">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-6">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                </button>
+            </a>
+        </div>
+        <div class="card">
+            <div class="image_container">
+                <div class="image_container">
+                    <img class="image" src="{{ url_for('static', filename='images/html.png') }}" alt="Card Image">
+                </div>
+            </div>
+            <a href="/lhtmli">
+                <button>
+                    Live HTML Interpreter
+                <div class="star-1">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-2">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-3">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-4">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-5">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-6">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                </button>
+            </a>
+        </div>
+        <div class="card">
+            <div class="image_container">
+                <div class="image_container">
+                    <img class="image" src="{{ url_for('static', filename='images/iCal.png') }}" alt="Card Image">
+                </div>
+            </div>
+            <a href="/compound">
+                <button>
+                    Compound Interest Calculator
+                <div class="star-1">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-2">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-3">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-4">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-5">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-6">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                </button>
+            </a>
+        </div>
+        <div class="card">
+            <div class="image_container">
+                <div class="image_container">
+                    <img class="image" src="{{ url_for('static', filename='images/iCal.png') }}" alt="Card Image">
+                </div>
+            </div>
+            <a href="/simple">
+                <button>
+                    Simple Interest Calculator
+                <div class="star-1">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-2">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-3">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-4">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-5">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-6">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                </button>
+            </a>
+        </div>
+        <div class="card">
+            <div class="image_container">
+                <div class="image_container">
+                    <img class="image" src="{{ url_for('static', filename='images/rPass.png') }}" alt="Card Image">
+                </div>
+            </div>
+            <a href="/passgen">
+                <button>
+                    Random Password Generator
+                <div class="star-1">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-2">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-3">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-4">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-5">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-6">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                </button>
+            </a>
+        </div>
+        <div class="card">
+            <div class="image_container">
+                <div class="image_container">
+                    <img class="image" src="{{ url_for('static', filename='images/chatBot.png') }}" alt="Card Image">
+                </div>
+            </div>
+            <a href="/chatBot">
+                <button>
+                    Chat Bot
+                <div class="star-1">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-2">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-3">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-4">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-5">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-6">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                </button>
+            </a>
+        </div>
+
+
+        <div class="card">
+            <div class="image_container">
+                <div class="image_container">
+                    <img class="image" src="{{ url_for('static', filename='images/audioA.png') }}" alt="Card Image">
+                </div>
+            </div>
+            <a href="/audioAnalyzer">
+                <button>
+                    Audio Analyzer
+                <div class="star-1">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-2">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-3">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-4">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-5">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-6">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                </button>
+            </a>
+        </div>
+
+
+        <div class="card">
+            <div class="image_container">
+                <div class="image_container">
+                    <img class="image" src="{{ url_for('static', filename='images/imageA.png') }}" alt="Card Image">
+                </div>
+            </div>
+            <a href="/imageA">
+                <button>
+                    Image Analyzer
+                <div class="star-1">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-2">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-3">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-4">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-5">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-6">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                </button>
+            </a>
+        </div>
+
+
+        <div class="card">
+            <div class="image_container">
+                <div class="image_container">
+                    <img class="image" src="{{ url_for('static', filename='images/imageA.png') }}" alt="Card Image">
+                </div>
+            </div>
+            <a href="/genImg">
+                <button>
+                    Image Generator
+                <div class="star-1">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-2">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-3">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-4">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-5">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                <div class="star-6">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 784.11 815.53"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                    <defs></defs>
+                    <g id="Layer_x0020_1">
+                        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                        <path
+                        class="fil0"
+                        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                        ></path>
+                    </g>
+                    </svg>
+                </div>
+                </button>
+            </a>
+        </div>
+
+
+    </div>
+</body>
+</html>

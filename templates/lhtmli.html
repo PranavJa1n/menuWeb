@@ -4,28 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Live HTML Interpreter</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
     <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            font-family: Arial, sans-serif;
-            background-color: #2C3E50;
-            color: #ECF0F1;
-            margin: 0;
-            padding: 20px;
-        }
+            body {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                color: #ECF0F1;
+                padding: 20px;
+            }
         textarea {
             width: 100%;
-            max-width: 600px;
+            max-width: 600px; 
             height: 200px;
-            <!--margin-bottom: 20px;-->
+            /* <!--margin-bottom: 20px;--> */
             font-family: monospace;
             font-size: 14px;
             padding: 10px;
             border-radius: 5px;
-            border: 1px solid #34495E;
-            background-color: #1A252F;
+            border: 2px solid #f39c12;
+            background-color: #3b3b3b;
             color: #ECF0F1;
             resize: none;
         }
@@ -38,7 +36,7 @@
             border-radius: 5px;
         }
         h1 {
-            color: #F1C40F;
+            color: #f39c12;
         }
         form {
             width: 100%;
@@ -48,8 +46,8 @@
             align-items: center;
         }
         button {
-            background-color: #F1C40F;
-            color: #2C3E50;
+            background-color: #f39c12;
+            color: #ECF0F1;
             border: none;
             padding: 10px;
             border-radius: 5px;
@@ -59,11 +57,15 @@
             margin-bottom: 10px;
         }
         button:hover {
-            background-color: #D4AC0D;
+            background-color: #e67e22;
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
+    <a href="/projects" class="back-button">
+        <i class="fas fa-arrow-left"></i>
+    </a>
     <h1>Live HTML Interpreter</h1>
     <form action="/interpret" method="post" target="outputFrame">
         <textarea name="html_code" placeholder="Type your HTML code here..."></textarea>

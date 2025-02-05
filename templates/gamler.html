@@ -9,13 +9,28 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: center; 
             height: 100vh;
             background: #121212;
             color: #0f0;
             font-family: 'Courier New', Courier, monospace;
             margin: 0;
             padding: 20px;
+        }
+        .back-button {
+            position: absolute;
+            top: 25px;
+            left: 25px;
+            background: none;
+            border: none;
+            color: #ffffff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .back-button i {
+            margin-right: 10px;
         }
         h1 {
             margin-bottom: 20px;
@@ -102,8 +117,12 @@
             text-align: left;
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
+    <a href="/projects" class="back-button">
+        <i class="fas fa-arrow-left"></i>
+    </a>
     <h1>Gambling Games</h1>
     <div class="games-container">
         <!-- Guess the Number Game -->
