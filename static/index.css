@@ -7,6 +7,22 @@ body {
     text-align: center;
 }
 
+.back-button {
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.back-button i {
+    margin-right: 10px;
+}
+
 .container {
     display: flex;
     flex-direction: column;

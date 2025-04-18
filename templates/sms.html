@@ -4,78 +4,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Send SMS</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #2b2b2b;
             color: #ECF0F1;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            padding: 20px;
         }
 
         h1 {
             color: #f39c12;
             text-align: center;
-            margin-bottom: 20px;
         }
 
         form {
+            max-width: 600px;
+            margin: 50px auto;
             background-color: #3b3b3b;
             padding: 20px;
-            border-radius: 10px;
+            border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-            max-width: 400px;
-            width: 100%;
         }
 
         label {
-            font-weight: bold;
-            margin-bottom: 10px;
             display: block;
-            color: #ECF0F1;
+            margin-bottom: 8px;
+            font-size: 16px;
         }
 
         input[type="text"] {
             width: 100%;
             padding: 10px;
-            margin-bottom: 15px;
+            margin: 10px 0 15px;
             border: 2px solid #f39c12;
-            border-radius: 5px;
+            border-radius: 4px;
             background-color: #2b2b2b;
             color: #ECF0F1;
             font-size: 16px;
-            box-sizing: border-box; /* Added to ensure equal spacing on both sides */
+            box-sizing: border-box;
         }
 
         input[type="submit"] {
             background-color: #f39c12;
             color: #ECF0F1;
-            padding: 10px 15px;
+            padding: 10px 20px;
             border: none;
-            border-radius: 5px;
+            border-radius: 4px;
             cursor: pointer;
-            font-size: 18px;
-            font-weight: bold;
-            width: 100%;
+            font-size: 16px;
+            display: block;
+            margin: 20px auto 0;
         }
 
         input[type="submit"]:hover {
             background-color: #e67e22;
         }
 
-        input[type="submit"]:focus {
-            outline: none;
-        }
-
         .message {
-            margin-bottom: 15px;
-            padding: 10px;
-            border-radius: 5px;
             text-align: center;
+            font-size: 18px;
+            margin-top: 20px;
             font-weight: bold;
         }
 
@@ -86,21 +73,6 @@
         .error {
             color: #E74C3C;
         }
-        .back-button {
-            position: absolute;
-            top: 25px;
-            left: 25px;
-            background: none;
-            border: none;
-            color: #ffffff;
-            font-size: 1.5rem;
-            cursor: pointer;
-            text-decoration: none;
-        }
-
-        .back-button i {
-            margin-right: 10px;
-        }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
@@ -108,9 +80,9 @@
     <a href="/projects" class="back-button">
         <i class="fas fa-arrow-left"></i>
     </a>
-    <form action="{{ url_for('sms_') }}" method="POST">
-        <h1>Send an SMS</h1>
 
+    <h1>Send an SMS</h1>
+    <form action="{{ url_for('sms_') }}" method="POST">
         <label for="accountsid">Twilio Account SID:</label>
         <input type="text" id="accountsid" name="accountsid" required>
 
@@ -119,21 +91,20 @@
 
         <label for="msgbody">Message:</label>
         <input type="text" id="msgbody" name="msgbody" required>
-        
+
         <label for="from_phno">Your Twilio Number:</label>
         <input type="text" id="from_phno" name="from_phno" required>
-        
+
         <label for="to_phno">Recipient's Number:</label>
         <input type="text" id="to_phno" name="to_phno" required>
-        
-        <input type="submit" value="Send">
-    
-    {% if success %}
-        <div class="message success">{{ success }}</div>
-    {% elif error %}
-        <div class="message error">{{ error }}</div>
-    {% endif %}
 
+        <input type="submit" value="Send">
+
+        {% if success %}
+        <div class="message success">{{ success }}</div>
+        {% elif error %}
+        <div class="message error">{{ error }}</div>
+        {% endif %}
     </form>
 </body>
 </html>

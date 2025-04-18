@@ -4,11 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Camera Access</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
     <style>
         body {
-            background-color: #2b2b2b;
             color: #ECF0F1;
-            font-family: Arial, sans-serif;
             text-align: center;
             padding: 20px;
         }
@@ -16,7 +15,7 @@
             border: 2px solid #f39c12; /* Highlight border */
             border-radius: 10px;
         }
-        #canvas {
+        #canvas { 
             display: none;
         }
         #recordedVideo {
@@ -47,21 +46,6 @@
             align-items: center;
             flex-direction: column;
             margin-top: 20px;
-        }
-        .back-button {
-            position: absolute;
-            top: 25px;
-            left: 25px;
-            background: none;
-            border: none;
-            color: #ffffff;
-            font-size: 1.5rem;
-            cursor: pointer;
-            text-decoration: none;
-        }
-
-        .back-button i {
-            margin-right: 10px;
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
