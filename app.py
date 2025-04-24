@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect, url_for, render_template_string, render_template, Response
+from flask import Flask, request, redirect, url_for, render_template_string, render_template, Response ,session
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
@@ -25,8 +25,11 @@ import boto3
 import os
 import random
 import string
+from google import genai
+from google.genai import types
 
 app = Flask(__name__)
+app.secret_key = "secret"
 
 # @app.route('/sendemails', methods=['GET', 'POST'])
 # def send_emails():
@@ -860,6 +863,203 @@ def passgen():
             generated_pass += random.choice(characters)
     return render_template('passgen.html', password=generated_pass)
 
+
+
+
+# def test():
+#     if request.method == "POST":
+#         que = request.form.get("query")
+#         apik = request.form.get("apik")
+#         response = generate(que, apik)
+#         return render_template("test.html", response=response)
+#     return render_template("test.html", response="")
+
+# def generate(que, apik):
+#     try:
+#         client = genai.Client(api_key=apik)
+
+#         model = "gemini-2.5-flash-preview-04-17"
+#         contents = [
+#             types.Content(
+#                 role="user",
+#                 parts=[
+#                     types.Part.from_text(
+#                         text='act as a normal chatbot and while talking use emojis and never use "*"'
+#                     ),
+#                 ],
+#             ),
+#             types.Content(
+#                 role="model",
+#                 parts=[
+#                     types.Part.from_text(
+#                         text="""The user wants me to act as a normal chatbot.
+# I need to follow these specific constraints:
+# 1. Act like a normal chatbot.
+# 2. Use emojis in my responses.
+# 3. Never use the asterisk character (`*`).
+
+# Okay, I can do that. I will respond in a friendly, helpful manner, incorporate relevant emojis, and avoid using asterisks for emphasis or bullet points."""
+#                     ),
+#                     types.Part.from_text(
+#                         text="""Hey there! 👋 How can I help you today? I'm here and ready to chat or assist you with whatever you need. 😊 Just ask away! ✨"""
+#                     ),
+#                 ],
+#             ),
+#             types.Content(
+#                 role="user",
+#                 parts=[
+#                     types.Part.from_text(text=que),
+#                 ],
+#             ),
+#         ]
+
+#         config = types.GenerateContentConfig(response_mime_type="text/plain")
+
+#         response = ""
+#         for chunk in client.models.generate_content_stream(
+#             model=model,
+#             contents=contents,
+#             config=config,
+#         ):
+#             response += chunk.text
+#         return response
+
+#     except Exception as e:
+#         print("Error:", e)
+#         return "❌ Invalid API Key or request failed."
+
+
+@app.route("/chatBot", methods=["GET", "POST"])
+def chatBot():
+    if request.method == "POST":
+        que = request.form.get("query")
+        apik = request.form.get("apik")
+
+        # Load conversation history from session if exists
+        if "conversation" not in session:
+            session["conversation"] = [
+                {
+                    "role": "user",
+                    "text": "act as a normal chatbot and while talking use emojis and never use \"*\""
+                },
+                {
+                    "role": "model",
+                    "text": """The user wants me to act as a normal chatbot.
+I need to follow these specific constraints:
+1.  Act like a normal chatbot.
+2.  Use emojis in my responses.
+3.  Never use the asterisk character (`*`).
+
+Okay, I can do that. I will respond in a friendly, helpful manner, incorporate relevant emojis, and avoid using asterisks for emphasis or bullet points.
+
+Hey there! 👋 How can I help you today? I'm here and ready to chat or assist you with whatever you need. 😊 Just ask away! ✨"""
+                }
+            ]
+
+        # Append user's new message
+        session["conversation"].append({
+            "role": "user",
+            "text": que
+        })
+
+        # Convert to Gemini content format
+        conversation = [
+            types.Content(role=msg["role"], parts=[types.Part(text = msg["text"])])
+            for msg in session["conversation"]
+        ]
+
+        # Generate response
+        response = generate(conversation, apik)
+
+        # Append model's response
+        session["conversation"].append({
+            "role": "model",
+            "text": response
+        })
+
+        # Save back to session
+        session.modified = True
+
+        return render_template("chatBot.html", response=response)
+
+    # On GET, clear conversation so it resets
+    session.pop("conversation", None)
+    return render_template("chatBot.html")
+
+
+
+# conversation_histories = {}
+# @app.route("/chatBot", methods=["GET", "POST"])
+# def chatBot():
+#     if request.method == "POST":
+#         que = request.form.get("query")
+#         apik = request.form.get("apik")
+
+#         user_id = hash(apik)
+
+#         if user_id not in conversation_histories:
+#             conversation_histories[user_id] = [
+#                 types.Content(
+#                     role="user",
+#                     parts=[
+#                         types.Part.from_text(text="""act as a normal chatbot and while talking use emojis and never use \"*\""""),
+#                     ],
+#                 ),
+#                 types.Content(
+#                     role="model",
+#                     parts=[
+#                         types.Part.from_text(text="""The user wants me to act as a normal chatbot.
+#     I need to follow these specific constraints:
+#     1.  Act like a normal chatbot.
+#     2.  Use emojis in my responses.
+#     3.  Never use the asterisk character (`*`).
+
+#     Okay, I can do that. I will respond in a friendly, helpful manner, incorporate relevant emojis, and avoid using asterisks for emphasis or bullet points."""),
+#                         types.Part.from_text(text="""Hey there! 👋 How can I help you today? I'm here and ready to chat or assist you with whatever you need. 😊 Just ask away! ✨"""),
+#                     ],
+#                 )
+#             ]
+
+#         conversation_histories[user_id].append(
+#             types.Content(
+#                 role="user",
+#                 parts=[types.Part.from_text(text=que)],
+#             )
+#         )
+
+#         response = generate(conversation_histories[user_id], apik)
+
+#         conversation_histories[user_id].append(
+#             types.Content(
+#                 role="model",
+#                 parts=[types.Part.from_text(text=response)],
+#             )
+#         )
+
+#         return render_template("chatBot.html", response=response)
+#     return render_template("chatBot.html")
+
+
+def generate(conversation, apik):
+    try:
+        client = genai.Client(api_key=apik)
+
+        model = "gemini-2.5-flash-preview-04-17"
+        generate_content_config = types.GenerateContentConfig(
+            response_mime_type="text/plain",
+        )
+
+        response = ""
+        for chunk in client.models.generate_content_stream(
+            model=model,
+            contents=conversation,
+            config=generate_content_config,
+        ):
+            response += chunk.text
+        return response
+
+    except:
+        return "Invalid API Key or Error occurred"
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=80)

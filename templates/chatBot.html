@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gemini Chatbot</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+  <style>
+    body {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h2 {
+      color: #f39c12;
+      text-align: center;
+    }
+
+    #chat-box {
+      width: 90%;
+      max-width: 600px;
+      height: 500px;
+      background-color: #3b3b3b;
+      border: 2px solid #f39c12;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      overflow: hidden;
+      margin: 20px 0 10px;
+    }
+
+    #chat-messages {
+      padding: 15px;
+      overflow-y: auto;
+      flex-grow: 1;
+    }
+
+    .msg {
+      margin: 10px 0;
+      line-height: 1.5;
+    }
+
+    .user {
+      text-align: right;
+      color: #2ECC71;
+    }
+
+    .bot {
+      text-align: left;
+      color: #E74C3C;
+    }
+
+    #apik {
+      width: 90%;
+      max-width: 600px;
+      padding: 10px;
+      margin: 10px auto;
+      border: 2px solid #f39c12;
+      border-radius: 4px;
+      background-color: #2b2b2b;
+      color: #ECF0F1;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+
+    .input-wrapper {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      background-color: #2b2b2b;
+      border-top: 2px solid #f39c12;
+      box-sizing: border-box;
+    }
+
+    #query {
+      flex-grow: 1;
+      padding: 10px 15px;
+      border: 2px solid #f39c12;
+      border-radius: 4px;
+      background-color: #1e1e1e;
+      color: #ECF0F1;
+      font-size: 16px;
+      margin-right: 10px;
+    }
+
+    button {
+      width: 40px;
+      height: 40px;
+      background-color: #f39c12;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+    }
+
+    button:hover {
+      background-color: #e67e22;
+    }
+  </style>
+</head>
+<body>
+  <a href="/projects" class="back-button">
+    <i class="fas fa-arrow-left"></i>
+  </a>
+  <h2>Gemini AI Chatbot 💬</h2>
+
+  <input type="text" id="apik" placeholder="Enter your Gemini API Key 🔑" />
+
+  <div id="chat-box">
+    <div id="chat-messages"></div>
+    <div class="input-wrapper">
+      <input type="text" id="query" placeholder="Type your message here..." />
+      <button onclick="sendMessage()">➤</button>
+    </div>
+  </div>
+
+  <script>
+    function appendMessage(sender, text) {
+      const box = document.getElementById("chat-messages");
+      const msg = document.createElement("div");
+      msg.className = "msg " + sender;
+      msg.innerText = text;
+      box.appendChild(msg);
+      box.scrollTop = box.scrollHeight;
+    }
+
+    function sendMessage() {
+      const query = document.getElementById("query").value.trim();
+      const apik = document.getElementById("apik").value.trim();
+
+      if (!query) {
+        alert("Please enter a message!");
+        return;
+      }
+      if (!apik) {
+        alert("Please enter an API key!");
+        return;
+      }
+
+      appendMessage("user", query);
+
+      fetch("/chatBot", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: `query=${encodeURIComponent(query)}&apik=${encodeURIComponent(apik)}`
+      })
+      .then(res => res.text())
+      .then(html => {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, "text/html");
+        const botResponse = doc.querySelector("#response-data")?.innerText;
+        if (botResponse) {
+          appendMessage("bot", botResponse);
+        } else {
+          appendMessage("bot", "⚠️ Failed to fetch response.");
+        }
+      })
+      .catch(() => appendMessage("bot", "❌ Error reaching server."));
+
+      document.getElementById("query").value = "";
+    }
+    document.getElementById("query").addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      sendMessage();
+    }
+  });
+  </script>
+
+  {% if response %}
+    <div id="response-data" style="display:none;">{{ response }}</div>
+  {% endif %}
+</body>
+</html>
