@@ -5,3 +5,4 @@ aboutMe.html
 __pycache__/
 uploads/
 test.py
+templates/test.html

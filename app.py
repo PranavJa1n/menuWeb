@@ -1061,5 +1061,69 @@ def generate(conversation, apik):
     except:
         return "Invalid API Key or Error occurred"
 
+
+
+@app.route("/audioAnalyzer", methods=["GET", "POST"])
+def audioAnalyzer():
+    result = None
+    if request.method == "POST":
+        apik = request.form.get("apik")
+        file = request.files.get("audio")
+        pro = request.form.get("pro")
+
+        if not apik or not file:
+            result = "Please provide both API key and audio file."
+        else:
+            try:
+                temp_path = os.path.join("temp_audio.mp3")
+                file.save(temp_path)
+
+                client = genai.Client(api_key= apik)
+                myfile = client.files.upload(file= temp_path)
+
+                response = client.models.generate_content(
+                    model="gemini-2.0-flash", contents=["Describe this audio clip", myfile]
+                )
+
+                result = response.text
+                os.remove(temp_path)
+
+            except Exception as e:
+                result = f"Error occurred: {str(e)}"
+
+    return render_template("audioA.html", response=result)
+
+
+@app.route("/imageA", methods=["GET", "POST"])
+def imageAnalyzer():
+    result = None
+    if request.method == "POST":
+        apik = request.form.get("apik")
+        file = request.files.get("image")
+        pro = request.form.get("pro")
+
+        if not apik or not file:
+            result = "Please provide both API key and image file."
+        else:
+            try:
+                temp_path = os.path.join("temp_image.jpg")
+                file.save(temp_path)
+
+                client = genai.Client(api_key= apik)
+                myfile = client.files.upload(file= temp_path)
+
+                response = client.models.generate_content(
+                    model="gemini-2.0-flash", contents=[myfile, "Explain the image and never use *"],
+                )
+
+                result = response.text
+                os.remove(temp_path)
+
+            except Exception as e:
+                result = f"Error occurred: {str(e)}"
+
+    return render_template("imageA.html", response=result)
+
+
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=80)
