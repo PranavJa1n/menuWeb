@@ -1,0 +1,13 @@
+Flask
+geopy
+googlesearch-python
+gTTS
+schedule
+twilio
+geocoder
+opencv-python
+pandas
+scikit-learn
+boto3
+google-generativeai
+Pillow
