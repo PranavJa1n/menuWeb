@@ -10,4 +10,5 @@ pandas
 scikit-learn
 boto3
 google-generativeai
+google-genai
 Pillow
