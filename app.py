@@ -22,11 +22,12 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
 import boto3
-import os
 import random
 import string
 from google import genai
 from google.genai import types
+from io import BytesIO
+from PIL import Image
 
 app = Flask(__name__)
 app.secret_key = "secret"
@@ -1123,6 +1124,50 @@ def imageAnalyzer():
                 result = f"Error occurred: {str(e)}"
 
     return render_template("imageA.html", response=result)
+
+
+
+
+@app.route('/genImg', methods=['GET', 'POST'])
+def genImg():
+    image_generated = False
+    timestamp = str(int(time.time()))
+
+    if request.method == 'POST':
+        apik = request.form.get('apik')
+        prompt = request.form.get('pro')
+
+        if not apik or not prompt:
+            return render_template('genImg.html', error="API key and prompt are required.", image_generated=False, timestamp=timestamp)
+
+        if os.path.exists('static/images/genImg.png'):
+            os.remove('static/images/genImg.png')
+
+        client = genai.Client(api_key=apik)
+
+        response = client.models.generate_content(
+            model="gemini-2.0-flash-exp-image-generation",
+            contents=prompt,
+            config=types.GenerateContentConfig(
+                response_modalities=['TEXT', 'IMAGE']
+            )
+        )
+
+        for part in response.candidates[0].content.parts:
+            if part.inline_data is not None:
+                image = Image.open(BytesIO(part.inline_data.data))
+                image.save('static/images/genImg.png')
+                image_generated = True
+
+        return render_template('genImg.html', image_generated=image_generated, timestamp=str(int(time.time())))
+
+    return render_template('genImg.html', image_generated=False, timestamp=timestamp)
+
+@app.route('/delete_test_image', methods=['POST'])
+def delete_test_image():
+    if os.path.exists('static/images/genImg.png'):
+        os.remove('static/images/genImg.png')
+    return '', 204
 
 
 if __name__ == '__main__':
